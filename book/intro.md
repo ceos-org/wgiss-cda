@@ -2,8 +2,8 @@
 
 
 **<div align="right"><font size="25">WGISS Connected Data Assets</font></div>**
-**<div align="right"><font size="25">Client Partner Guide (OpenSearch)</font></div>**
-<div align="right">Publication Date: 2019-04-04</div>
+**<div align="right"><font size="25">Client Partner Guide</font></div>**
+<div align="right">Publication Date: Draft 2026-XX-XX</div>
 <div align="right">Editors: WGISS DAIG</div>
 
 <br/>
