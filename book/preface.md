@@ -1,15 +1,8 @@
 # Preface
 
-This document contains the comprehensive client partner’s guide for OpenSearch, as adopted in
-the CEOS WGISS Connected Data Assets project. The document introduces the architecture
-background and required skills to be a client, the query interface, and an implementation outline.
-Several detailed use cases about how to retrieve the IDN (International Directory Network)
-collection ID and how to interact with the WGISS Connected Assets Granule Gateway servers are
-also included in this document.
-
-Future versions of the book are expected to cover additional topics including:
-
-- Accessing connected data assets using STAC
+This document contains the comprehensive client partner’s guide for STAC and OpenSearch, as adopted by
+the CEOS WGISS Connected Data Assets. The document explains how clients or client applications can interact with the Connected Data Assets via their STAC API or OpenSearch interfaces.
+Several detailed use cases about how to retrieve collections and granules in these collections corresponding to various search criteria are also included in this document.
 
 Additional information:
 
