@@ -4,16 +4,27 @@
 format: jb-book
 root: preface
 parts:
-  - caption: WGISS CDA OpenSearch Client Guide
+#  - caption: ESA Thesauri
+#    chapters:
+#    - file: thesauri
+  - caption: WGISS CDA Client Guide
     chapters:
     - file: intro
     - file: scope
-    - file: references
-    - file: opensearch_4_before_you_begin
-    - file: opensearch_5_outline
-    - file: opensearch_6_idn
-    - file: opensearch_7_cmr
-    - file: opensearch_8_fedeo
+    - file: references  
+    - file: before_you_begin
+    - file: stac/outline.md
+      title: STAC Client Implementation Outline
+      sections:
+      - file: stac/idn.md
+      - file: stac/cmr.md
+      - file: stac/fedeo
+    - file: opensearch/outline
+      title: OpenSearch Client Implementation Outline
+      sections:
+      - file: opensearch/idn
+      - file: opensearch/cmr
+      - file: opensearch/fedeo
     - file: glossary
 #    - file: genindex
 #  - caption: STAC Best Practices
