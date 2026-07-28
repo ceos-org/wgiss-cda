@@ -9,6 +9,7 @@
 #   BUILD_DIR        directory holding the built HTML                  (required)
 #   REMOTE           git URL to push to; a local path works in tests   (required)
 #   SOURCE_REF       short ref/sha used in the commit message          (optional)
+#   GIT_SHA          commit built, shown (shortened) on versions.html  (optional)
 #   DEFAULT_VERSION  version the site root redirects to; default main  (optional)
 #   DRY_RUN          if "1", do everything except the final push       (optional)
 #
@@ -18,6 +19,9 @@ set -euo pipefail
 : "${BUILD_DIR:?BUILD_DIR is required}"
 : "${REMOTE:?REMOTE is required}"
 SOURCE_REF="${SOURCE_REF:-unknown}"
+short_sha="${GIT_SHA:-}"          # may legitimately be unset outside CI
+short_sha="${short_sha:0:7}"
+short_sha="${short_sha:-unknown}"
 DEFAULT_VERSION="${DEFAULT_VERSION:-main}"
 DRY_RUN="${DRY_RUN:-0}"
 
@@ -61,6 +65,11 @@ cp -a "$BUILD_DIR/." "$site/$SLUG/"
 # Sphinx output contains _static/, _sources/ ... which Jekyll would drop.
 touch "$site/.nojekyll"
 
+# Provenance for this version, kept alongside it so versions.html can report
+# each version's own build without needing to know anything about the others.
+printf '%s\t%s\n' "$(date -u '+%Y-%m-%d %H:%M UTC')" "$short_sha" \
+  > "$site/$SLUG/.build-info"
+
 # versions.html always lists whatever versions now exist.
 {
   echo '<!doctype html>'
@@ -73,7 +82,13 @@ touch "$site/.nojekyll"
   echo '<p>Published versions:</p><ul>'
   for dir in "$site"/*/; do
     name="$(basename "$dir")"
-    printf '<li><a href="%s/">%s</a></li>\n' "$name" "$name"
+    # Versions published before .build-info existed simply show no provenance.
+    info=""
+    if [ -f "$dir/.build-info" ]; then
+      IFS=$'\t' read -r built sha < "$dir/.build-info" || true
+      info="$(printf ' <small>built %s &middot; <code>%s</code></small>' "$built" "$sha")"
+    fi
+    printf '<li><a href="%s/">%s</a>%s</li>\n' "$name" "$name" "$info"
   done
   echo '</ul></body></html>'
 } > "$site/versions.html"
