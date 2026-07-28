@@ -1,7 +1,19 @@
 (chapter-references)=
 # References
 
-The following documents provide more background and supportive information.
+The following documents provide more background and supportive information related to the CDA STAC interfaces.
+
+
+| **Reference**  | **Document Title** | 
+| -------- | --------- | 
+| `RD01` <a name="RD01"></a> | [CEOS STAC Collection and Granule Discovery Best Practices, v1.0.1](https://github.com/ceos-org/stac-collection-and-granule-discovery-best-practices/tree/v1.0.1) | 
+| `RD02` <a name="RD02"></a> | [STAC Catalog Specification, v1.0.0](https://github.com/radiantearth/stac-spec/blob/v1.0.0/catalog-spec/catalog-spec.md) | 
+| `RD03` <a name="RD03"></a> | [STAC Collection Specification, v1.0.0](https://github.com/radiantearth/stac-spec/tree/v1.0.0/collection-spec) | 
+| `RD04` <a name="RD04"></a> | [STAC Item Specification, v1.0.0](https://github.com/radiantearth/stac-spec/tree/v1.0.0/item-spec)   | 
+| `RD05` <a name="RD05"></a> | [STAC API Specification, v1.0.0](https://github.com/radiantearth/stac-api-spec/tree/release/v1.0.0)  | 
+| `RD06` <a name="RD06"></a> | [STAC API - Item Search, v1.0.0](https://github.com/radiantearth/stac-api-spec/tree/release/v1.0.0/item-search) |
+
+The following documents provide more background and supportive information related to the CDA OPenSearch interfaces.
 
 | **Reference**  | **Document Title** | 
 | -------- | --------- | 
@@ -12,4 +24,5 @@ The following documents provide more background and supportive information.
 | `OPENSEARCH` <a name="OPENSEARCH"></a>| [OpenSearch 1.1 Draft 6](https://github.com/dewitt/opensearch/blob/master/opensearch-1-1-draft-6.md) |
 | `ATOM` <a name="ATOM"></a> | [RFC 4287 - The Atom Syndication Format](https://datatracker.ietf.org/doc/html/rfc4287) | 
 | `PARAM` <a name="PARAM"></a> | [OpenSearch Parameter Extension 1.0 Draft 2](https://github.com/dewitt/opensearch/blob/master/mediawiki/Specifications/OpenSearch/Extensions/Parameter/1.0/Draft%202.wiki) | 
+
 

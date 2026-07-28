@@ -1,10 +1,10 @@
 # Before You Begin
 
 This chapter introduces the background, concepts and architecture of IDN, CWIC/CMR, and
-FedEO, within the scope of the WGISS Connected Assets. The related skills you will need as a
+FedEO, within the scope of the WGISS Connected Data Assets (CDA). The related skills you will need as a
 client partner are also discussed.
 
-## WGISS Connected Data Asssets Background
+## Background
 
 For scientists who conduct multi-disciplinary research, there may be a need to search multiple
 catalogs in order to find the data they need. Such work can be very time-consuming and tedious,
@@ -32,9 +32,12 @@ research.
 To aid in the search and discovery effort, Global Change Master Directory (GCMD) controlled
 keywords have been developed and are regularly being refined and expanded. These keywords are
 also used in other applications within the broader scientific community. Users may perform
-searches through the IDN website and OpenSearch API using the controlled keywords, free-text
+searches through the IDN website and the CDA STAC or OpenSearch API using the controlled keywords, free-text
 searches, map/date searches, or any combination of the above; and may also search or refine a
 search by data center, instrument, platform, project, or temporal/spatial resolution.
+
+
+### IDN
 
 The IDN also supports draft Metadata Management Tool (dMMT), a web-based metadata
 authoring tool that allows metadata authors to add (or modify) data set descriptions that comply
@@ -51,17 +54,20 @@ their underlying connections to CWIC with the support of the WGISS System Level 
 provides inventory search to WGISS agency catalog systems for EO data by distributing search
 requests to the appropriate server and sending search responses back to the requesting client.
 
+### FedEO 
 FedEO (Federated Earth Observation Gateway) provides a unique entry point to a growing number
 of scientific catalogues and services for, but not limited to, EO European and Canadian
-missions. FedEO is deployed with ESA (European Space Agency) infrastructure as a gateway to 
-provide brokered discovery, access and ordering capability to European/Canadian EO missions
-data based on HMA (Heterogeneous Missions Accessibility) interfaces.
+missions. FedEO is a conttribution from ESA (European Space Agency) to CEOS as a gateway to 
+provide brokered discovery and access capabilities to European/Canadian EO missions
+data based on interoperable interfaces.
 
-WGISS is coordinating efforts to connect CWIC and FedEO system with the IDN through a
+### WGISS CDA
+
+WGISS is coordinating efforts to connect the CWIC and FedEO systems with the IDN through a
 common registration of metadata records to seamlessly provide search results for relevant data sets
 regardless of which system is used to access the granule level data.
 
-![Connected Data Assets](http://ceos.org/wp-content/uploads/2024/07/CDA_figure.png "Connected Data Assets")
+![Connected Data Assets](https://ceos.org/wp-content/uploads/2026/03/Connected_Data_Assets_figure.png "Connected Data Assets")
 
 
 ## Search Concept and Design
@@ -69,28 +75,34 @@ regardless of which system is used to access the granule level data.
 A two-step collection/granule search process, which separates discovery of collections from
 searching within relevant collections to retrieve specific data granules, has been adopted to realize
 the integrated access to heterogeneous, autonomous data sources.
-The WGISS Connected Data Assets system is an implementation of this two-step process. The
-IDN provides an OpenSearch front end to the collection search. The response from the collection
-search includes links to the OpenSearch Descriptor Documents (OSDD) at one of several Granule
+The WGISS Connected Data Assets system is an implementation of this two-step process. 
+
+### Collection Search
+
+The IDN and FedEO provide a Web-based graphical user interface to the collection search.
+
+In addition, IDN and FedEO provide a STAC API and OpenSearch API to the collection search. The response from the collection
+search includes links to the search interfaces at one of several Granule
 Gateways, providing search capability for granules at the relevant data providers. Current WGISS
 Connected Data Assets Granule Gateways include the CWIC data partners under CMR and FedEO.
-Each of these systems provides access to different data archive systems using the same OpenSearch
-protocol. Spatial and temporal metadata are the only attributes guaranteed to be supported at all
-data providers. The CEOS OpenSearch Best Practice supports a number of metadata attributes
-through the Parameter extensions, but they are not all universally supported across CWIC/CMR
-or FedEO.
+Each of these systems provides access to different data archive systems using the same STAC and OpenSearch
+protocols. 
 
-### Granule Search Criteria
+### Granule Search
 
-Section 5 (below) gives complete details about the OpenSearch API for specifying search criteria.
-It is important to understand how the OSDD documents search parameters both for collections and,
+The "STAC Client Guide" sections of this document give complete details about the STAC API for specifying search criteria.
+It is important to understand how the STAC Queryables object advertizes search parameters both for collections and,
+separately, for granules.
+
+The "OpenSearch Client Guide" sections of this document give complete details about the OpenSearch API for specifying search criteria.
+It is important to understand how the OSDD advertizes search parameters both for collections and,
 separately, for granules.
 
 The step 2 search, i.e. granule search, supports constraints with spatial, temporal, and pagination.
 Spatial constraint is specified with a bounding box. Temporal filter can be specified with begin
-and end time in standard ISO 8601 timestamp format. See Section 5 for specific query parameters.
+and end time in standard ISO 8601 timestamp format. See the "STAC Client Guide" and "OpenSearch Client Guide" sections for specific query parameters.
 
-### Current Data Partners
+### Data Partners
 
 Current data partners providing granule search access through WGISS Connected Data Assets
 include systems from the various agencies shown in Figure 1. WGISS maintains a current list of
@@ -100,28 +112,33 @@ https://ceos.org/ourwork/workinggroups/wgiss/access/connected-data-assets/.
 
 ## WGISS Architecture for Connected Data Assets
 
-At its core, the systems present to End Users and Clients an OpenSearch server compliant with the
+At its core, the systems present to End Users and Clients a single endpoint compliant with the 	
+CEOS STAC Collection and Granule Discovery Best Practices [RD01] and
 CEOS OpenSearch Best Practice. In this way, outside clients need to have no specific knowledge
-of the particular partner data systems and communicate only via OpenSearch.
+of the particular partner data systems and communicate only via the STAC or OpenSearch interfaces.
 
-## Skills You Will Need as a Client Partner
+## Skills Needed as a Client Partner
 
-As a Client Data Partner, you need to be familiar with basic web application technology such as:
+As a STAC Client Partner, you need to be familiar with basic web application technology such as:
+
+* JSON, GeoJSON and [JSON Schema](https://json-schema.org/)
+* STAC-related technologies
+* [RESTFul](https://en.wikipedia.org/wiki/Representational_state_transfer) related architecture and technologies
+* Web development programming language
+
+As an OpenSearch Client Partner, you need to be familiar with basic web application technology such as:
 
 * XML and [XML Schema](https://www.w3.org/TR/xmlschema-0/) (XSD)
-* OpenSearch related technologies
+* OpenSearch-related technologies
 * [RESTFul](https://en.wikipedia.org/wiki/Representational_state_transfer) related architecture and technologies
 * Web development programming language
 
 
-## WGISS Contact Information
+## Contact Information
 
 All the documents and information about WGISS Connected Data Assets are available at WGISS
 at https://ceos.org/ourwork/workinggroups/wgiss/access/
 
-Any questions regarding to WCDA, please send the email to
-
-* Access-SysTeam-help@wgiss.ceos.org
 
 
 
