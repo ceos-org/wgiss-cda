@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="./" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>References &#8212; CDA Partner Guide OpenSearch</title>
+    <title>Use Case - STAC Collection Search (IDN) &#8212; CDA Partner Guide OpenSearch</title>
   
   
   
@@ -27,53 +27,53 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
 
-    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'references';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'stac/idn';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Before You Begin" href="before_you_begin.html" />
-    <link rel="prev" title="Scope" href="scope.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Use Case - STAC Granule Search (CWIC/CMR)" href="cmr.html" />
+    <link rel="prev" title="STAC Client Guide" href="outline.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
   
     
-    <script src="_static/searchtools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script src="searchindex.js"></script>
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
   
   </head>
   <body data-default-mode="">
@@ -93,7 +93,7 @@
   <dialog id="pst-search-dialog">
     
 <form class="bd-search d-flex align-items-center"
-      action="search.html"
+      action="../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -153,6 +153,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -182,7 +186,7 @@
     
   
 
-<a class="navbar-brand logo" href="preface.html">
+<a class="navbar-brand logo" href="../preface.html">
   
   
   
@@ -193,8 +197,8 @@
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="CDA Partner Guide OpenSearch - Home"/>
-    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="CDA Partner Guide OpenSearch - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="CDA Partner Guide OpenSearch - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="CDA Partner Guide OpenSearch - Home"/>
   
   
 </a></div>
@@ -210,30 +214,30 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="preface.html">
+                <a class="reference internal" href="../preface.html">
                     Preface
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">WGISS CDA Client Guide</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="before_you_begin.html">Before You Begin</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="stac/outline.html">STAC Client Implementation Outline</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="stac/idn.html">Use Case - STAC Collection Search (IDN)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stac/cmr.html">Use Case - STAC Granule Search (CWIC/CMR)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stac/fedeo.html">Use Case - Collection and Granule Search (FedEO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scope.html">Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../before_you_begin.html">Before You Begin</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="outline.html">STAC Client Implementation Outline</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Use Case - STAC Collection Search (IDN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmr.html">Use Case - STAC Granule Search (CWIC/CMR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fedeo.html">Use Case - Collection and Granule Search (FedEO)</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="opensearch/outline.html">OpenSearch Client Implementation Outline</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="opensearch/idn.html">Use Case - Collection Search (IDN)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="opensearch/cmr.html">Use Case - Granule Search (CWIC/CMR)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="opensearch/fedeo.html">Use Case - Granule Search (FedEO)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../opensearch/outline.html">OpenSearch Client Implementation Outline</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../opensearch/idn.html">Use Case - Collection Search (IDN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../opensearch/cmr.html">Use Case - Granule Search (CWIC/CMR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../opensearch/fedeo.html">Use Case - Granule Search (FedEO)</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Terms, definitions and abbreviated terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Terms, definitions and abbreviated terms</a></li>
 </ul>
 
     </div>
@@ -308,7 +312,7 @@
       
       
       
-      <li><a href="_sources/references.md" target="_blank"
+      <li><a href="../_sources/stac/idn.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -371,7 +375,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -382,11 +388,21 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>References</h1>
+    <h1>Use Case - STAC Collection Search (IDN)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idn-stac-endpoints">IDN STAC Endpoints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-collections-via-idn">Retrieve Collections via IDN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-collection-search-parameters">Available Collection Search Parameters</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -396,69 +412,21 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="references">
-<span id="chapter-references"></span><h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
-<p>The following documents provide more background and supportive information related to the CDA STAC interfaces.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Reference</strong></p></th>
-<th class="head"><p><strong>Document Title</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RD01</span></code> <a name="RD01"></a></p></td>
-<td><p><a class="reference external" href="https://github.com/ceos-org/stac-collection-and-granule-discovery-best-practices/tree/v1.0.1">CEOS STAC Collection and Granule Discovery Best Practices, v1.0.1</a></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RD02</span></code> <a name="RD02"></a></p></td>
-<td><p><a class="reference external" href="https://github.com/radiantearth/stac-spec/blob/v1.0.0/catalog-spec/catalog-spec.md">STAC Catalog Specification, v1.0.0</a></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RD03</span></code> <a name="RD03"></a></p></td>
-<td><p><a class="reference external" href="https://github.com/radiantearth/stac-spec/tree/v1.0.0/collection-spec">STAC Collection Specification, v1.0.0</a></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RD04</span></code> <a name="RD04"></a></p></td>
-<td><p><a class="reference external" href="https://github.com/radiantearth/stac-spec/tree/v1.0.0/item-spec">STAC Item Specification, v1.0.0</a></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RD05</span></code> <a name="RD05"></a></p></td>
-<td><p><a class="reference external" href="https://github.com/radiantearth/stac-api-spec/tree/release/v1.0.0">STAC API Specification, v1.0.0</a></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RD06</span></code> <a name="RD06"></a></p></td>
-<td><p><a class="reference external" href="https://github.com/radiantearth/stac-api-spec/tree/release/v1.0.0/item-search">STAC API - Item Search, v1.0.0</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>The following documents provide more background and supportive information related to the CDA OPenSearch interfaces.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Reference</strong></p></th>
-<th class="head"><p><strong>Document Title</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CEOS-OS-BP</span></code> <a name="CEOS_OS_BP"></a></p></td>
-<td><p><a class="reference external" href="https://ceos.org/document_management/Working_Groups/WGISS/Documents/WGISS%20Best%20Practices/CEOS%20OpenSearch%20Best%20Practice.pdf">CEOS OpenSearch Best Practice Document, Version 1.3</a></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OGC</span> <span class="pre">10-157r4</span></code> <a name="OGC10-157r4"></a></p></td>
-<td><p><a class="reference external" href="https://docs.ogc.org/is/10-157r4/10-157r4.html">Earth Observation Metadata profile of Observations &amp; Measurements, Version 1.1</a></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OGC</span> <span class="pre">10-032r8</span></code> <a name="OGC10-032r8"></a></p></td>
-<td><p><a class="reference external" href="https://portal.ogc.org/files/?artifact_id=56866">OpenSearch Geo and Time Extensions</a></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">OGC</span> <span class="pre">13-026r9</span></code> <a name="OGC13-026r9"></a></p></td>
-<td><p><a class="reference external" href="http://docs.opengeospatial.org/is/13-026r9/13-026r9.html">OpenSearch Extension for Earth Observation</a></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OPENSEARCH</span></code> <a name="OPENSEARCH"></a></p></td>
-<td><p><a class="reference external" href="https://github.com/dewitt/opensearch/blob/master/opensearch-1-1-draft-6.md">OpenSearch 1.1 Draft 6</a></p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ATOM</span></code> <a name="ATOM"></a></p></td>
-<td><p><a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc4287">RFC 4287 - The Atom Syndication Format</a></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PARAM</span></code> <a name="PARAM"></a></p></td>
-<td><p><a class="reference external" href="https://github.com/dewitt/opensearch/blob/master/mediawiki/Specifications/OpenSearch/Extensions/Parameter/1.0/Draft%202.wiki">OpenSearch Parameter Extension 1.0 Draft 2</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="use-case-stac-collection-search-idn">
+<h1>Use Case - STAC Collection Search (IDN)<a class="headerlink" href="#use-case-stac-collection-search-idn" title="Link to this heading">#</a></h1>
+<p>This chapter provides a comprehensive and detailed process about how to implement a WGISS STAC client, which includes how to retrieve the metadata for the collection of interest, and how to build a STAC API request.</p>
+<section id="idn-stac-endpoints">
+<h2>IDN STAC Endpoints<a class="headerlink" href="#idn-stac-endpoints" title="Link to this heading">#</a></h2>
+<p>TBD</p>
+</section>
+<section id="retrieve-collections-via-idn">
+<h2>Retrieve Collections via IDN<a class="headerlink" href="#retrieve-collections-via-idn" title="Link to this heading">#</a></h2>
+<p>TBD</p>
+</section>
+<section id="available-collection-search-parameters">
+<h2>Available Collection Search Parameters<a class="headerlink" href="#available-collection-search-parameters" title="Link to this heading">#</a></h2>
+<p>TBD</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -474,7 +442,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./."
+            path: "./stac"
         },
         predefinedOutput: true
     }
@@ -492,20 +460,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="scope.html"
+       href="outline.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Scope</p>
+        <p class="prev-next-title">STAC Client Guide</p>
       </div>
     </a>
     <a class="right-next"
-       href="before_you_begin.html"
+       href="cmr.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Before You Begin</p>
+        <p class="prev-next-title">Use Case - STAC Granule Search (CWIC/CMR)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -515,6 +483,25 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idn-stac-endpoints">IDN STAC Endpoints</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-collections-via-idn">Retrieve Collections via IDN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-collection-search-parameters">Available Collection Search Parameters</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
@@ -559,8 +546,8 @@ By CEOS WGISS DAIG
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
 
   <footer class="bd-footer">
   </footer>

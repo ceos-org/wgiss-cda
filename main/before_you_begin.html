@@ -60,11 +60,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'opensearch_4_before_you_begin';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'before_you_begin';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Client Partner Implementation Outline" href="opensearch_5_outline.html" />
+    <link rel="next" title="STAC Client Guide" href="stac/outline.html" />
     <link rel="prev" title="References" href="references.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -219,17 +219,25 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">WGISS CDA OpenSearch Client Guide</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">WGISS CDA Client Guide</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Before You Begin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_5_outline.html">Client Partner Implementation Outline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_6_idn.html">Use Case - Collection Search (IDN)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_7_cmr.html">Use Case - Granule Search (CWIC/CMR)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_8_fedeo.html">Use Case - Granule Search (FedEO)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="stac/outline.html">STAC Client Implementation Outline</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="stac/idn.html">Use Case - STAC Collection Search (IDN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stac/cmr.html">Use Case - STAC Granule Search (CWIC/CMR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stac/fedeo.html">Use Case - Collection and Granule Search (FedEO)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="opensearch/outline.html">OpenSearch Client Implementation Outline</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensearch/idn.html">Use Case - Collection Search (IDN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensearch/cmr.html">Use Case - Granule Search (CWIC/CMR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensearch/fedeo.html">Use Case - Granule Search (FedEO)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Terms, definitions and abbreviated terms</a></li>
 </ul>
 
     </div>
@@ -304,7 +312,7 @@
       
       
       
-      <li><a href="_sources/opensearch_4_before_you_begin.md" target="_blank"
+      <li><a href="_sources/before_you_begin.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -390,15 +398,21 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wgiss-connected-data-asssets-background">WGISS Connected Data Asssets Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#idn">IDN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fedeo">FedEO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wgiss-cda">WGISS CDA</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#search-concept-and-design">Search Concept and Design</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#granule-search-criteria">Granule Search Criteria</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#current-data-partners">Current Data Partners</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collection-search">Collection Search</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#granule-search">Granule Search</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partners">Data Partners</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wgiss-architecture-for-connected-data-assets">WGISS Architecture for Connected Data Assets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-you-will-need-as-a-client-partner">Skills You Will Need as a Client Partner</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wgiss-contact-information">WGISS Contact Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-needed-as-a-client-partner">Skills Needed as a Client Partner</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact-information">Contact Information</a></li>
 </ul>
             </nav>
         </div>
@@ -413,10 +427,10 @@
   <section class="tex2jax_ignore mathjax_ignore" id="before-you-begin">
 <h1>Before You Begin<a class="headerlink" href="#before-you-begin" title="Link to this heading">#</a></h1>
 <p>This chapter introduces the background, concepts and architecture of IDN, CWIC/CMR, and
-FedEO, within the scope of the WGISS Connected Assets. The related skills you will need as a
+FedEO, within the scope of the WGISS Connected Data Assets (CDA). The related skills you will need as a
 client partner are also discussed.</p>
-<section id="wgiss-connected-data-asssets-background">
-<h2>WGISS Connected Data Asssets Background<a class="headerlink" href="#wgiss-connected-data-asssets-background" title="Link to this heading">#</a></h2>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Link to this heading">#</a></h2>
 <p>For scientists who conduct multi-disciplinary research, there may be a need to search multiple
 catalogs in order to find the data they need. Such work can be very time-consuming and tedious,
 especially when different catalogs may use different metadata models and catalog interface
@@ -440,9 +454,11 @@ research.</p>
 <p>To aid in the search and discovery effort, Global Change Master Directory (GCMD) controlled
 keywords have been developed and are regularly being refined and expanded. These keywords are
 also used in other applications within the broader scientific community. Users may perform
-searches through the IDN website and OpenSearch API using the controlled keywords, free-text
+searches through the IDN website and the CDA STAC or OpenSearch API using the controlled keywords, free-text
 searches, map/date searches, or any combination of the above; and may also search or refine a
 search by data center, instrument, platform, project, or temporal/spatial resolution.</p>
+<section id="idn">
+<h3>IDN<a class="headerlink" href="#idn" title="Link to this heading">#</a></h3>
 <p>The IDN also supports draft Metadata Management Tool (dMMT), a web-based metadata
 authoring tool that allows metadata authors to add (or modify) data set descriptions that comply
 with the CMR Unified Metadata Model for Collections (UMM-C). The tool also allows metadata
@@ -456,42 +472,53 @@ interoperable standards and NASA evolved the architecture by allowing data partn
 their underlying connections to CWIC with the support of the WGISS System Level Team. CMR
 provides inventory search to WGISS agency catalog systems for EO data by distributing search
 requests to the appropriate server and sending search responses back to the requesting client.</p>
+</section>
+<section id="fedeo">
+<h3>FedEO<a class="headerlink" href="#fedeo" title="Link to this heading">#</a></h3>
 <p>FedEO (Federated Earth Observation Gateway) provides a unique entry point to a growing number
 of scientific catalogues and services for, but not limited to, EO European and Canadian
-missions. FedEO is deployed with ESA (European Space Agency) infrastructure as a gateway to
-provide brokered discovery, access and ordering capability to European/Canadian EO missions
-data based on HMA (Heterogeneous Missions Accessibility) interfaces.</p>
-<p>WGISS is coordinating efforts to connect CWIC and FedEO system with the IDN through a
+missions. FedEO is a conttribution from ESA (European Space Agency) to CEOS as a gateway to
+provide brokered discovery and access capabilities to European/Canadian EO missions
+data based on interoperable interfaces.</p>
+</section>
+<section id="wgiss-cda">
+<h3>WGISS CDA<a class="headerlink" href="#wgiss-cda" title="Link to this heading">#</a></h3>
+<p>WGISS is coordinating efforts to connect the CWIC and FedEO systems with the IDN through a
 common registration of metadata records to seamlessly provide search results for relevant data sets
 regardless of which system is used to access the granule level data.</p>
-<p><img alt="Connected Data Assets" src="http://ceos.org/wp-content/uploads/2024/07/CDA_figure.png" /></p>
+<p><img alt="Connected Data Assets" src="https://ceos.org/wp-content/uploads/2026/03/Connected_Data_Assets_figure.png" /></p>
+</section>
 </section>
 <section id="search-concept-and-design">
 <h2>Search Concept and Design<a class="headerlink" href="#search-concept-and-design" title="Link to this heading">#</a></h2>
 <p>A two-step collection/granule search process, which separates discovery of collections from
 searching within relevant collections to retrieve specific data granules, has been adopted to realize
 the integrated access to heterogeneous, autonomous data sources.
-The WGISS Connected Data Assets system is an implementation of this two-step process. The
-IDN provides an OpenSearch front end to the collection search. The response from the collection
-search includes links to the OpenSearch Descriptor Documents (OSDD) at one of several Granule
+The WGISS Connected Data Assets system is an implementation of this two-step process.</p>
+<section id="collection-search">
+<h3>Collection Search<a class="headerlink" href="#collection-search" title="Link to this heading">#</a></h3>
+<p>The IDN and FedEO provide a Web-based graphical user interface to the collection search.</p>
+<p>In addition, IDN and FedEO provide a STAC API and OpenSearch API to the collection search. The response from the collection
+search includes links to the search interfaces at one of several Granule
 Gateways, providing search capability for granules at the relevant data providers. Current WGISS
 Connected Data Assets Granule Gateways include the CWIC data partners under CMR and FedEO.
-Each of these systems provides access to different data archive systems using the same OpenSearch
-protocol. Spatial and temporal metadata are the only attributes guaranteed to be supported at all
-data providers. The CEOS OpenSearch Best Practice supports a number of metadata attributes
-through the Parameter extensions, but they are not all universally supported across CWIC/CMR
-or FedEO.</p>
-<section id="granule-search-criteria">
-<h3>Granule Search Criteria<a class="headerlink" href="#granule-search-criteria" title="Link to this heading">#</a></h3>
-<p>Section 5 (below) gives complete details about the OpenSearch API for specifying search criteria.
-It is important to understand how the OSDD documents search parameters both for collections and,
+Each of these systems provides access to different data archive systems using the same STAC and OpenSearch
+protocols.</p>
+</section>
+<section id="granule-search">
+<h3>Granule Search<a class="headerlink" href="#granule-search" title="Link to this heading">#</a></h3>
+<p>The “STAC Client Guide” sections of this document give complete details about the STAC API for specifying search criteria.
+It is important to understand how the STAC Queryables object advertizes search parameters both for collections and,
+separately, for granules.</p>
+<p>The “OpenSearch Client Guide” sections of this document give complete details about the OpenSearch API for specifying search criteria.
+It is important to understand how the OSDD advertizes search parameters both for collections and,
 separately, for granules.</p>
 <p>The step 2 search, i.e. granule search, supports constraints with spatial, temporal, and pagination.
 Spatial constraint is specified with a bounding box. Temporal filter can be specified with begin
-and end time in standard ISO 8601 timestamp format. See Section 5 for specific query parameters.</p>
+and end time in standard ISO 8601 timestamp format. See the “STAC Client Guide” and “OpenSearch Client Guide” sections for specific query parameters.</p>
 </section>
-<section id="current-data-partners">
-<h3>Current Data Partners<a class="headerlink" href="#current-data-partners" title="Link to this heading">#</a></h3>
+<section id="data-partners">
+<h3>Data Partners<a class="headerlink" href="#data-partners" title="Link to this heading">#</a></h3>
 <p>Current data partners providing granule search access through WGISS Connected Data Assets
 include systems from the various agencies shown in Figure 1. WGISS maintains a current list of
 the data providers that comprise the WGISS Connected Data Assets on the WGISS website
@@ -500,28 +527,32 @@ the data providers that comprise the WGISS Connected Data Assets on the WGISS we
 </section>
 <section id="wgiss-architecture-for-connected-data-assets">
 <h2>WGISS Architecture for Connected Data Assets<a class="headerlink" href="#wgiss-architecture-for-connected-data-assets" title="Link to this heading">#</a></h2>
-<p>At its core, the systems present to End Users and Clients an OpenSearch server compliant with the
+<p>At its core, the systems present to End Users and Clients a single endpoint compliant with the 	
+CEOS STAC Collection and Granule Discovery Best Practices [RD01] and
 CEOS OpenSearch Best Practice. In this way, outside clients need to have no specific knowledge
-of the particular partner data systems and communicate only via OpenSearch.</p>
+of the particular partner data systems and communicate only via the STAC or OpenSearch interfaces.</p>
 </section>
-<section id="skills-you-will-need-as-a-client-partner">
-<h2>Skills You Will Need as a Client Partner<a class="headerlink" href="#skills-you-will-need-as-a-client-partner" title="Link to this heading">#</a></h2>
-<p>As a Client Data Partner, you need to be familiar with basic web application technology such as:</p>
+<section id="skills-needed-as-a-client-partner">
+<h2>Skills Needed as a Client Partner<a class="headerlink" href="#skills-needed-as-a-client-partner" title="Link to this heading">#</a></h2>
+<p>As a STAC Client Partner, you need to be familiar with basic web application technology such as:</p>
+<ul class="simple">
+<li><p>JSON, GeoJSON and <a class="reference external" href="https://json-schema.org/">JSON Schema</a></p></li>
+<li><p>STAC-related technologies</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer">RESTFul</a> related architecture and technologies</p></li>
+<li><p>Web development programming language</p></li>
+</ul>
+<p>As an OpenSearch Client Partner, you need to be familiar with basic web application technology such as:</p>
 <ul class="simple">
 <li><p>XML and <a class="reference external" href="https://www.w3.org/TR/xmlschema-0/">XML Schema</a> (XSD)</p></li>
-<li><p>OpenSearch related technologies</p></li>
+<li><p>OpenSearch-related technologies</p></li>
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer">RESTFul</a> related architecture and technologies</p></li>
 <li><p>Web development programming language</p></li>
 </ul>
 </section>
-<section id="wgiss-contact-information">
-<h2>WGISS Contact Information<a class="headerlink" href="#wgiss-contact-information" title="Link to this heading">#</a></h2>
+<section id="contact-information">
+<h2>Contact Information<a class="headerlink" href="#contact-information" title="Link to this heading">#</a></h2>
 <p>All the documents and information about WGISS Connected Data Assets are available at WGISS
 at <a class="reference external" href="https://ceos.org/ourwork/workinggroups/wgiss/access/">https://ceos.org/ourwork/workinggroups/wgiss/access/</a></p>
-<p>Any questions regarding to WCDA, please send the email to</p>
-<ul class="simple">
-<li><p><a class="reference external" href="mailto:Access-SysTeam-help&#37;&#52;&#48;wgiss&#46;ceos&#46;org">Access-SysTeam-help<span>&#64;</span>wgiss<span>&#46;</span>ceos<span>&#46;</span>org</a></p></li>
-</ul>
 </section>
 </section>
 
@@ -565,11 +596,11 @@ at <a class="reference external" href="https://ceos.org/ourwork/workinggroups/wg
       </div>
     </a>
     <a class="right-next"
-       href="opensearch_5_outline.html"
+       href="stac/outline.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Client Partner Implementation Outline</p>
+        <p class="prev-next-title">STAC Client Guide</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -591,15 +622,21 @@ at <a class="reference external" href="https://ceos.org/ourwork/workinggroups/wg
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wgiss-connected-data-asssets-background">WGISS Connected Data Asssets Background</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background">Background</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#idn">IDN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fedeo">FedEO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wgiss-cda">WGISS CDA</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#search-concept-and-design">Search Concept and Design</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#granule-search-criteria">Granule Search Criteria</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#current-data-partners">Current Data Partners</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collection-search">Collection Search</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#granule-search">Granule Search</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-partners">Data Partners</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wgiss-architecture-for-connected-data-assets">WGISS Architecture for Connected Data Assets</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-you-will-need-as-a-client-partner">Skills You Will Need as a Client Partner</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wgiss-contact-information">WGISS Contact Information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skills-needed-as-a-client-partner">Skills Needed as a Client Partner</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact-information">Contact Information</a></li>
 </ul>
   </nav></div>
 

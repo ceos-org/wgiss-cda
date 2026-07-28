@@ -215,17 +215,25 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">WGISS CDA OpenSearch Client Guide</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">WGISS CDA Client Guide</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_4_before_you_begin.html">Before You Begin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_5_outline.html">Client Partner Implementation Outline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_6_idn.html">Use Case - Collection Search (IDN)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_7_cmr.html">Use Case - Granule Search (CWIC/CMR)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_8_fedeo.html">Use Case - Granule Search (FedEO)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="before_you_begin.html">Before You Begin</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="stac/outline.html">STAC Client Implementation Outline</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="stac/idn.html">Use Case - STAC Collection Search (IDN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stac/cmr.html">Use Case - STAC Granule Search (CWIC/CMR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stac/fedeo.html">Use Case - Collection and Granule Search (FedEO)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="opensearch/outline.html">OpenSearch Client Implementation Outline</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensearch/idn.html">Use Case - Collection Search (IDN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensearch/cmr.html">Use Case - Granule Search (CWIC/CMR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensearch/fedeo.html">Use Case - Granule Search (FedEO)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Terms, definitions and abbreviated terms</a></li>
 </ul>
 
     </div>
@@ -389,20 +397,18 @@
                 <article class="bd-article">
                   
   <p><strong><div align="right"><font size="25">WGISS Connected Data Assets</font></div></strong>
-<strong><div align="right"><font size="25">Client Partner Guide (OpenSearch)</font></div></strong></p>
-<div align="right">Publication Date: 2019-04-04</div>
+<strong><div align="right"><font size="25">Client Partner Guide</font></div></strong></p>
+<div align="right">Publication Date: 2026-XX-XX</div>
 <div align="right">Editors: WGISS DAIG</div>
 <br/>
 <br/>
 <br/>
 <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
-<p>This document contains the comprehensive client partner’s guide for OpenSearch, as adopted in
-the CEOS WGISS Connected Data Assets project. The document introduces the architecture
-background and required skills to be a client, the query interface, and an implementation outline.
-Several detailed use cases about how to retrieve the IDN (International Directory Network)
-collection ID and how to interact with the WGISS Connected Assets Granule Gateway servers are
-also included in this document.</p>
+<p>This document is the comprehensive client partner’s guide for the CEOS WGISS Connected Data Assets. The document introduces the architecture
+background and required skills to be a client, the query interfaces, and an implementation outline.
+Several detailed use cases about how to find collections of interest via IDN (International Directory Network) or FedEO (Federated Earth Observation)
+and how to interact with the WGISS Connected Assets to obtain granules also included in this document.</p>
 </section>
 
     <script type="text/x-thebe-config">

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Terms and Definitions &#8212; CDA Partner Guide OpenSearch</title>
+    <title>Terms, definitions and abbreviated terms &#8212; CDA Partner Guide OpenSearch</title>
   
   
   
@@ -64,7 +64,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Use Case - Granule Search (FedEO)" href="opensearch_8_fedeo.html" />
+    <link rel="prev" title="Use Case - Granule Search (FedEO)" href="opensearch/fedeo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -152,6 +152,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -214,17 +218,25 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">WGISS CDA OpenSearch Client Guide</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">WGISS CDA Client Guide</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_4_before_you_begin.html">Before You Begin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_5_outline.html">Client Partner Implementation Outline</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_6_idn.html">Use Case - Collection Search (IDN)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_7_cmr.html">Use Case - Granule Search (CWIC/CMR)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="opensearch_8_fedeo.html">Use Case - Granule Search (FedEO)</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Terms and Definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="before_you_begin.html">Before You Begin</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="stac/outline.html">STAC Client Implementation Outline</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="stac/idn.html">Use Case - STAC Collection Search (IDN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stac/cmr.html">Use Case - STAC Granule Search (CWIC/CMR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stac/fedeo.html">Use Case - Collection and Granule Search (FedEO)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="opensearch/outline.html">OpenSearch Client Implementation Outline</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="opensearch/idn.html">Use Case - Collection Search (IDN)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensearch/cmr.html">Use Case - Granule Search (CWIC/CMR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opensearch/fedeo.html">Use Case - Granule Search (FedEO)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Terms, definitions and abbreviated terms</a></li>
 </ul>
 
     </div>
@@ -362,7 +374,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -373,11 +387,20 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Terms and Definitions</h1>
+    <h1>Terms, definitions and abbreviated terms</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terms-and-definitions">Terms and definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acronyms">Acronyms</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -387,17 +410,17 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="terms-and-definitions">
-<h1>Terms and Definitions<a class="headerlink" href="#terms-and-definitions" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="terms-definitions-and-abbreviated-terms">
+<h1>Terms, definitions and abbreviated terms<a class="headerlink" href="#terms-definitions-and-abbreviated-terms" title="Link to this heading">#</a></h1>
+<section id="terms-and-definitions">
+<h2>Terms and definitions<a class="headerlink" href="#terms-and-definitions" title="Link to this heading">#</a></h2>
 <p>For the purposes of this document, the following terms and definitions apply:</p>
 <dl class="simple glossary">
 <dt id="term-client">client<a class="headerlink" href="#term-client" title="Link to this term">#</a></dt><dd><p>A software component that can invoke an operation from a server</p>
 </dd>
 <dt id="term-CMR">CMR<a class="headerlink" href="#term-CMR" title="Link to this term">#</a></dt><dd><p>The Common Metadata Repository is the database system used to manage earth science metadata records for the IDN.</p>
 </dd>
-<dt id="term-collection">collection<a class="headerlink" href="#term-collection" title="Link to this term">#</a></dt><dd><p>A grouping of granules that all come from the same source, such as a modeling group or
-institution. Collections have information that is common across all the granules they “own”
-and a template for describing additional attributes not already part of the metadata model.</p>
+<dt id="term-collection">collection<a class="headerlink" href="#term-collection" title="Link to this term">#</a></dt><dd><p>A collection is an aggregation of granules sharing the same product specification. A collection typically corresponds to the series of products derived from data acquired by a sensor on board a satellite and having the same mode of operation.</p>
 </dd>
 <dt id="term-data-clearinghouse">data clearinghouse<a class="headerlink" href="#term-data-clearinghouse" title="Link to this term">#</a></dt><dd><p>The collection of institutions providing digital data, which can be searched through a single
 interface using a common metadata standard</p>
@@ -421,19 +444,21 @@ systems.</p>
 <dt id="term-identifier">identifier<a class="headerlink" href="#term-identifier" title="Link to this term">#</a></dt><dd><p>A character string that may be composed of numbers and characters that is exchanged between
 the client and the server with respect to a specific identity of a resource</p>
 </dd>
+<dt id="term-Interface">Interface<a class="headerlink" href="#term-Interface" title="Link to this term">#</a></dt><dd><p>Named set of operations that characterize the behavior of an entity.</p>
+</dd>
 <dt id="term-IDN">IDN<a class="headerlink" href="#term-IDN" title="Link to this term">#</a></dt><dd><p>The CEOS International Directory Network (IDN) is a gateway to earth science data and
 services.</p>
 </dd>
 <dt id="term-IDN-collection-ID">IDN collection ID<a class="headerlink" href="#term-IDN-collection-ID" title="Link to this term">#</a></dt><dd><p>Unique collection identifier in IDN, returned from the IDN in response to the OSDD request.
 This identifier is assigned by the IDN CMR database.</p>
 </dd>
+<dt id="term-Metadata">Metadata<a class="headerlink" href="#term-Metadata" title="Link to this term">#</a></dt><dd><p>Information about a resource.</p>
+</dd>
 <dt id="term-native-ID">native ID<a class="headerlink" href="#term-native-ID" title="Link to this term">#</a></dt><dd><p>Collection identifier used by CWIC and FedEO to retrieve granule metadata through data
 provider API. This identifier is assigned by the data provider but may be the same as the CMR
 collection ID.</p>
 </dd>
 <dt id="term-operation">operation<a class="headerlink" href="#term-operation" title="Link to this term">#</a></dt><dd><p>The specification of a transformation or query that an object may be called to execute</p>
-</dd>
-<dt id="term-OSDD">OSDD<a class="headerlink" href="#term-OSDD" title="Link to this term">#</a></dt><dd><p>OpenSearch Description Document</p>
 </dd>
 <dt id="term-profile">profile<a class="headerlink" href="#term-profile" title="Link to this term">#</a></dt><dd><p>A set of one or more base standards and - where applicable - the identification of chosen
 clauses, classes, subsets, options and parameters of those base standards that are necessary for
@@ -444,6 +469,30 @@ accomplishing a particular function</p>
 <dt id="term-response">response<a class="headerlink" href="#term-response" title="Link to this term">#</a></dt><dd><p>The result of an operation, returned from server to client</p>
 </dd>
 </dl>
+</section>
+<section id="acronyms">
+<h2>Acronyms<a class="headerlink" href="#acronyms" title="Link to this heading">#</a></h2>
+<dl class="simple glossary">
+<dt id="term-API">API<a class="headerlink" href="#term-API" title="Link to this term">#</a></dt><dd><p>Application Programming Interface</p>
+</dd>
+<dt id="term-ARD">ARD<a class="headerlink" href="#term-ARD" title="Link to this term">#</a></dt><dd><p>Analysis Ready Data</p>
+</dd>
+<dt id="term-0">CMR<a class="headerlink" href="#term-0" title="Link to this term">#</a></dt><dd><p>Common Metadata Repository</p>
+</dd>
+<dt id="term-CQL">CQL<a class="headerlink" href="#term-CQL" title="Link to this term">#</a></dt><dd><p>Common Query Language</p>
+</dd>
+<dt id="term-GCMD">GCMD<a class="headerlink" href="#term-GCMD" title="Link to this term">#</a></dt><dd><p>Global Change Master Directory</p>
+</dd>
+<dt id="term-1">IDN<a class="headerlink" href="#term-1" title="Link to this term">#</a></dt><dd><p>International Directory Network</p>
+</dd>
+<dt id="term-JSON">JSON<a class="headerlink" href="#term-JSON" title="Link to this term">#</a></dt><dd><p>JavaScript Object Notation</p>
+</dd>
+<dt id="term-OSDD">OSDD<a class="headerlink" href="#term-OSDD" title="Link to this term">#</a></dt><dd><p>OpenSearch Description Document</p>
+</dd>
+<dt id="term-STAC">STAC<a class="headerlink" href="#term-STAC" title="Link to this term">#</a></dt><dd><p>Spatiotemporal Asset Catalog</p>
+</dd>
+</dl>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -477,7 +526,7 @@ accomplishing a particular function</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="opensearch_8_fedeo.html"
+       href="opensearch/fedeo.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -491,6 +540,24 @@ accomplishing a particular function</p>
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terms-and-definitions">Terms and definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acronyms">Acronyms</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
