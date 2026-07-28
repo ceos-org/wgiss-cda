@@ -1,0 +1,1089 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Use Case - Collection Search (IDN) &#8212; CDA Partner Guide OpenSearch</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'opensearch_6_idn';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Use Case - Granule Search (CWIC/CMR)" href="opensearch_7_cmr.html" />
+    <link rel="prev" title="Client Partner Implementation Outline" href="opensearch_5_outline.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="preface.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="CDA Partner Guide OpenSearch - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="CDA Partner Guide OpenSearch - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">WGISS CDA OpenSearch Client Guide</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scope.html">Scope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensearch_4_before_you_begin.html">Before You Begin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensearch_5_outline.html">Client Partner Implementation Outline</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Use Case - Collection Search (IDN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensearch_7_cmr.html">Use Case - Granule Search (CWIC/CMR)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opensearch_8_fedeo.html">Use Case - Granule Search (FedEO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Terms and Definitions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/ceos-org/wgiss-cda/main?urlpath=tree/book/opensearch_6_idn.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ceos-org/wgiss-cda/blob/main/book/opensearch_6_idn.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/ceos-org/wgiss-cda" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/opensearch_6_idn.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Use Case - Collection Search (IDN)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idn-systems">IDN Systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-collections-via-idn-opensearch">Retrieve Collections via IDN OpenSearch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-collection-search-criteria">Available Collection Search Criteria</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="use-case-collection-search-idn">
+<span id="chapter-idn"></span><h1>Use Case - Collection Search (IDN)<a class="headerlink" href="#use-case-collection-search-idn" title="Link to this heading">#</a></h1>
+<p>This chapter provides a comprehensive and detailed process about how to implement a WGISS
+OpenSearch client, which includes how to retrieve the OSDD for the collection of interest, and
+how to build an OpenSearch request.</p>
+<section id="idn-systems">
+<h2>IDN Systems<a class="headerlink" href="#idn-systems" title="Link to this heading">#</a></h2>
+<p>The IDN, CMR OpenSearch (for IDN), and the GCMD’s Keyword Management Service (KMS)
+only have operational systems which end-users can access.</p>
+<ul class="simple">
+<li><p>IDN site is available to all users.  Location: <a class="reference external" href="https://idn.ceos.org/">https://idn.ceos.org/</a></p></li>
+<li><p>OpenSearch API for IDN (via CMR). Production instance is available to all users.  Location: <a class="reference external" href="https://cmr.earthdata.nasa.gov/opensearch/">https://cmr.earthdata.nasa.gov/opensearch/</a></p></li>
+<li><p>KMS - production instance is available to all users.  Location: <a class="reference external" href="https://gcmd.earthdata.nasa.gov/kms/capabilities?format=html">https://gcmd.earthdata.nasa.gov/kms/capabilities?format=html</a></p></li>
+</ul>
+<p>The IDN site search interface and the CMR OpenSearch production instances will provide access to all collections which have been registered in the IDN. The KMS production instance will provide access to all approved GCMD keywords registered by IDN providers.</p>
+</section>
+<section id="retrieve-collections-via-idn-opensearch">
+<span id="section-retrieve-collections-via-idn-opensearch"></span><h2>Retrieve Collections via IDN OpenSearch<a class="headerlink" href="#retrieve-collections-via-idn-opensearch" title="Link to this heading">#</a></h2>
+<p>CEOS OpenSearch supports searching for collections through the IDN. Searching for granules in a specific collection is supported at the data partners via the Granule Gateways (see chapter
+“CWIC” and chapter <a class="reference internal" href="opensearch_8_fedeo.html#chapter-fedeo"><span class="std std-ref">“FedEO”</span></a>). It executes a collection or inventory search, as appropriate, and returns the matching results.  In order to create a valid request, clients have to obtain the IDN OpenSearch OSDD and fill request
+parameters with proper values.</p>
+<p><strong>Step 1</strong></p>
+<blockquote>
+<div><p>Obtain the IDN OpenSearch OSDD to formulate a valid IDN OpenSearch request.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">URL_OSDD</span> <span class="o">=</span> <span class="s2">&quot;https://cmr.earthdata.nasa.gov/opensearch/collections/descriptor_document.xml?clientId=ceosOpenSearchDoc&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The template of the OpenSearch request is available under the <code class="docutils literal notranslate"><span class="pre">&lt;Url&gt;</span></code> element corresponding to the media type (Atom) in the OSDD and is included below.</p>
+<div class="cell tag_output_scroll tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span><span class="nt">&lt;os:OpenSearchDescription</span><span class="w"> </span><span class="na">xmlns:os=</span><span class="s">&quot;http://a9.com/-/spec/opensearch/1.1/&quot;</span><span class="w"> </span><span class="na">xmlns:echo=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html#atom&quot;</span><span class="w"> </span><span class="na">xmlns:geo=</span><span class="s">&quot;http://a9.com/-/opensearch/extensions/geo/1.0/&quot;</span><span class="w"> </span><span class="na">xmlns:time=</span><span class="s">&quot;http://a9.com/-/opensearch/extensions/time/1.0/&quot;</span><span class="w"> </span><span class="na">xmlns:params=</span><span class="s">&quot;http://a9.com/-/spec/opensearch/extensions/parameters/1.0/&quot;</span><span class="w"> </span><span class="na">xmlns:referrer=</span><span class="s">&quot;https://github.com/dewitt/opensearch/blob/master/mediawiki/Specifications/OpenSearch/Extensions/Referrer/1.0&quot;</span><span class="w"> </span><span class="na">xmlns:eo=</span><span class="s">&quot;http://a9.com/-/opensearch/extensions/eo/1.0/&quot;</span><span class="w"> </span><span class="na">xmlns:atom=</span><span class="s">&quot;http://www.w3.org/2005/Atom&quot;</span><span class="nt">&gt;</span><span class="w">  </span>
+<span class="w">    </span><span class="nt">&lt;os:ShortName&gt;</span>CMR<span class="w"> </span>Collections<span class="nt">&lt;/os:ShortName&gt;</span><span class="w">  </span>
+<span class="w">    </span><span class="nt">&lt;os:Description&gt;</span>NASA<span class="w"> </span>CMR<span class="w"> </span>Collection<span class="w"> </span>search<span class="w"> </span>using<span class="w"> </span>geo,<span class="w"> </span>time<span class="w"> </span>and<span class="w"> </span>parameter<span class="w"> </span>extensions<span class="nt">&lt;/os:Description&gt;</span><span class="w">  </span>
+<span class="w">    </span><span class="nt">&lt;os:Contact&gt;</span>echodev@echo.nasa.gov<span class="nt">&lt;/os:Contact&gt;</span><span class="w">  </span>
+<span class="w">    </span><span class="nt">&lt;os:Url</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/atom+xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;collection&quot;</span><span class="w"> </span><span class="na">params:method=</span><span class="s">&quot;GET&quot;</span><span class="w"> </span><span class="na">template=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/collections.atom?keyword={os:searchTerms?}&amp;amp;instrument={echo:instrument?}&amp;amp;satellite={eo:platform?}&amp;amp;boundingBox={geo:box?}&amp;amp;lat={geo:lat?}&amp;amp;lon={geo:lon?}&amp;amp;radius={geo:radius?}&amp;amp;geometry={geo:geometry?}&amp;amp;placeName={geo:name?}&amp;amp;startTime={time:start?}&amp;amp;endTime={time:end?}&amp;amp;cursor={os:startPage?}&amp;amp;numberOfResults={os:count?}&amp;amp;offset={os:startIndex?}&amp;amp;uid={geo:uid?}&amp;amp;hasGranules={echo:hasGranules?}&amp;amp;isCwic={echo:isCwic?}&amp;amp;isGeoss={echo:isGeoss?}&amp;amp;isCeos={echo:isCeos?}&amp;amp;isEosdis={echo:isEosdis?}&amp;amp;isFedeo={echo:isFedeo?}&amp;amp;provider={echo:provider?}&amp;amp;clientId=ceosOpenSearchDoc&quot;</span><span class="nt">&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;keyword&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Search terms&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{os:searchTerms}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with terms expressed by these search terms&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;atom:link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;profile&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;This parameter follows the elastic search free text search implementations&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;instrument&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Instrument&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:instrument}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory associated with a satellite instrument expressed by this short name&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;satellite&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Satellite&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{eo:platform}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory associated with a Satellite/platform expressed by this short name&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;boundingBox&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Bounding box&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:box}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with a spatial extent overlapping this bounding box&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lat&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Latitude&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:lat}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with latitude in decimal degrees, must be used together with lon and radius&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">minInclusive=</span><span class="s">&quot;-90.0&quot;</span><span class="w"> </span><span class="na">maxInclusive=</span><span class="s">&quot;90.0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lon&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Longitude&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:lon}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with longitude in decimal degrees, must be used together with lat and radius&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">minInclusive=</span><span class="s">&quot;-180.0&quot;</span><span class="w"> </span><span class="na">maxInclusive=</span><span class="s">&quot;180.0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;radius&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Radius&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:radius}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with the search radius in meters, must be used together with lat and lon&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">minInclusive=</span><span class="s">&quot;10&quot;</span><span class="w"> </span><span class="na">maxInclusive=</span><span class="s">&quot;6000000&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;geometry&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Geometry&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:geometry}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with a spatial extent overlapping this geometry&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;atom:link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;profile&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://www.opengis.net/wkt/LINESTRING&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;This service accepts WKT LineStrings&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;atom:link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;profile&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://www.opengis.net/wkt/POINT&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;This service accepts WKT Points&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;atom:link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;profile&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://www.opengis.net/wkt/POLYGON&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;This service accepts WKT Polygons&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;placeName&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Place name&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:name}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with a spatial location described by this name&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;startTime&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Start time&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{time:start}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with a temporal extent containing this start time&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;endTime&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;End time&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{time:end}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with a temporal extent containing this end time&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;cursor&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Start page&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{os:startPage}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Start page for the search result&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;numberOfResults&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Number of results&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{os:count}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Maximum number of records in the search result&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">maxInclusive=</span><span class="s">&quot;2000&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;offset&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Start index&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{os:startIndex}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;0-based offset used to skip the specified number of results in the search result set&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;uid&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Unique identifier&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:uid}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory associated with this unique ID&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hasGranules&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Has granules&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:hasGranules}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with granules&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Yes&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;No&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;isCwic&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;CWIC collection&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:isCwic}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory related to CWIC&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Yes&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;isGeoss&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;GEOSS collection&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:isGeoss}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory related to GEOSS&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Yes&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;isCeos&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;CEOS collection&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:isCeos}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory related to CEOS&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Yes&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;isEosdis&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;EOSDIS collection&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:isEosdis}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory related to EOSDIS&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Yes&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;isFedeo&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;FedEO collection&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:isFedeo}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory related to FedEO&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Yes&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;provider&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Provider&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:provider}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory associated with a provider&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;clientId&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Client identifier&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{referrer:source}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Client identifier to be used for metrics&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">    </span><span class="nt">&lt;/os:Url&gt;</span><span class="w">  </span>
+<span class="w">    </span><span class="nt">&lt;os:Url</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text/html&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;collection&quot;</span><span class="w"> </span><span class="na">params:method=</span><span class="s">&quot;GET&quot;</span><span class="w"> </span><span class="na">template=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/collections.html?keyword={os:searchTerms?}&amp;amp;instrument={echo:instrument?}&amp;amp;satellite={eo:platform?}&amp;amp;boundingBox={geo:box?}&amp;amp;lat={geo:lat?}&amp;amp;lon={geo:lon?}&amp;amp;radius={geo:radius?}&amp;amp;geometry={geo:geometry?}&amp;amp;placeName={geo:name?}&amp;amp;startTime={time:start?}&amp;amp;endTime={time:end?}&amp;amp;cursor={os:startPage?}&amp;amp;numberOfResults={os:count?}&amp;amp;offset={os:startIndex?}&amp;amp;uid={geo:uid?}&amp;amp;hasGranules={echo:hasGranules?}&amp;amp;isCwic={echo:isCwic?}&amp;amp;isGeoss={echo:isGeoss?}&amp;amp;isCeos={echo:isCeos?}&amp;amp;isEosdis={echo:isEosdis?}&amp;amp;isFedeo={echo:isFedeo?}&amp;amp;provider={echo:provider?}&amp;amp;clientId=ceosOpenSearchDoc&quot;</span><span class="nt">&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;keyword&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Search terms&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{os:searchTerms}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with terms expressed by these search terms&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;atom:link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;profile&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;This parameter follows the elastic search free text search implementations&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;instrument&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Instrument&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:instrument}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory associated with a satellite instrument expressed by this short name&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;satellite&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Satellite&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{eo:platform}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory associated with a Satellite/platform expressed by this short name&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;boundingBox&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Bounding box&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:box}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with a spatial extent overlapping this bounding box&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lat&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Latitude&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:lat}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with latitude in decimal degrees, must be used together with lon and radius&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">minInclusive=</span><span class="s">&quot;-90.0&quot;</span><span class="w"> </span><span class="na">maxInclusive=</span><span class="s">&quot;90.0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lon&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Longitude&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:lon}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with longitude in decimal degrees, must be used together with lat and radius&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">minInclusive=</span><span class="s">&quot;-180.0&quot;</span><span class="w"> </span><span class="na">maxInclusive=</span><span class="s">&quot;180.0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;radius&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Radius&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:radius}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with the search radius in meters, must be used together with lat and lon&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">minInclusive=</span><span class="s">&quot;10&quot;</span><span class="w"> </span><span class="na">maxInclusive=</span><span class="s">&quot;6000000&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;geometry&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Geometry&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:geometry}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with a spatial extent overlapping this geometry&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;atom:link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;profile&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://www.opengis.net/wkt/LINESTRING&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;This service accepts WKT LineStrings&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;atom:link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;profile&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://www.opengis.net/wkt/POINT&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;This service accepts WKT Points&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;atom:link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;profile&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://www.opengis.net/wkt/POLYGON&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;This service accepts WKT Polygons&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;placeName&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Place name&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:name}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with a spatial location described by this name&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;startTime&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Start time&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{time:start}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with a temporal extent containing this start time&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;endTime&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;End time&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{time:end}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with a temporal extent containing this end time&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;cursor&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Start page&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{os:startPage}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Start page for the search result&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;numberOfResults&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Number of results&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{os:count}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Maximum number of records in the search result&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">maxInclusive=</span><span class="s">&quot;2000&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;offset&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Start index&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{os:startIndex}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;0-based offset used to skip the specified number of results in the search result set&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;uid&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Unique identifier&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{geo:uid}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory associated with this unique ID&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;hasGranules&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Has granules&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:hasGranules}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory with granules&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Yes&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;No&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;isCwic&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;CWIC collection&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:isCwic}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory related to CWIC&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Yes&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;isGeoss&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;GEOSS collection&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:isGeoss}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory related to GEOSS&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Yes&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;isCeos&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;CEOS collection&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:isCeos}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory related to CEOS&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Yes&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;isEosdis&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;EOSDIS collection&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:isEosdis}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory related to EOSDIS&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Yes&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;isFedeo&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;FedEO collection&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:isFedeo}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory related to FedEO&quot;</span><span class="nt">&gt;</span><span class="w">      </span>
+<span class="w">            </span><span class="nt">&lt;params:Option</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="na">label=</span><span class="s">&quot;Yes&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">        </span><span class="nt">&lt;/params:Parameter&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;provider&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Provider&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{echo:provider}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Inventory associated with a provider&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">        </span><span class="nt">&lt;params:Parameter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;clientId&quot;</span><span class="w"> </span><span class="na">uiDisplay=</span><span class="s">&quot;Client identifier&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;{referrer:source}&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Client identifier to be used for metrics&quot;</span><span class="w"> </span><span class="na">minimum=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<span class="w">    </span><span class="nt">&lt;/os:Url&gt;</span><span class="w">  </span>
+<span class="w">    </span><span class="nt">&lt;os:Query</span><span class="w"> </span><span class="na">role=</span><span class="s">&quot;example&quot;</span><span class="w"> </span><span class="na">searchTerms=</span><span class="s">&quot;Amazon River Basin Precipitation, 1972-1992&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Sample search&quot;</span><span class="nt">/&gt;</span><span class="w">  </span>
+<span class="w">    </span><span class="nt">&lt;os:Attribution&gt;</span>NASA<span class="w"> </span>CMR<span class="nt">&lt;/os:Attribution&gt;</span><span class="w">  </span>
+<span class="w">    </span><span class="nt">&lt;os:SyndicationRight&gt;</span>open<span class="nt">&lt;/os:SyndicationRight&gt;</span><span class="w">  </span>
+<span class="w">    </span><span class="nt">&lt;os:Tags&gt;</span>CMR<span class="w"> </span>NASA<span class="w"> </span>CWIC<span class="w"> </span>CEOS-OS-BP-V1.1/L3<span class="w"> </span>ESIP<span class="w"> </span>OGC<span class="w"> </span>collection<span class="w"> </span>pageOffset=1<span class="w"> </span>indexOffset=0<span class="nt">&lt;/os:Tags&gt;</span><span class="w">  </span>
+<span class="nt">&lt;/os:OpenSearchDescription&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Step 2</strong></p>
+<blockquote>
+<div><p>Search collections of interest through IDN OpenSearch with proper request parameters.</p>
+</div></blockquote>
+<p>An example request can be formed as follows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find URL template for collection search</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="n">ns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;os&#39;</span><span class="p">:</span> <span class="s1">&#39;http://a9.com/-/spec/opensearch/1.1/&#39;</span><span class="p">}</span>
+<span class="n">collection_url_atom</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;os:Url[@rel=&quot;collection&quot;][@type=&quot;application/atom+xml&quot;]&#39;</span><span class="p">,</span> <span class="n">ns</span><span class="p">)</span>
+
+<span class="n">collection_template</span> <span class="o">=</span> <span class="n">collection_url_atom</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;template&#39;</span><span class="p">]</span>
+<span class="n">collection_template</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://cmr.earthdata.nasa.gov/opensearch/collections.atom?keyword={os:searchTerms?}&amp;instrument={echo:instrument?}&amp;satellite={eo:platform?}&amp;boundingBox={geo:box?}&amp;lat={geo:lat?}&amp;lon={geo:lon?}&amp;radius={geo:radius?}&amp;geometry={geo:geometry?}&amp;placeName={geo:name?}&amp;startTime={time:start?}&amp;endTime={time:end?}&amp;cursor={os:startPage?}&amp;numberOfResults={os:count?}&amp;offset={os:startIndex?}&amp;uid={geo:uid?}&amp;hasGranules={echo:hasGranules?}&amp;isCwic={echo:isCwic?}&amp;isGeoss={echo:isGeoss?}&amp;isCeos={echo:isCeos?}&amp;isEosdis={echo:isEosdis?}&amp;isFedeo={echo:isFedeo?}&amp;provider={echo:provider?}&amp;clientId=ceosOpenSearchDoc&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">request_url</span> <span class="o">=</span> <span class="n">get_api_request</span><span class="p">(</span><span class="n">collection_template</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;searchTerms&#39;</span><span class="p">:</span> <span class="s1">&#39;Landsat_8&#39;</span><span class="p">})</span>
+<span class="n">request_url</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://cmr.earthdata.nasa.gov/opensearch/collections.atom?keyword=Landsat_8&amp;numberOfResults=10&amp;clientId=ceosOpenSearchDoc&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="n">request_url</span> <span class="p">)</span>
+<span class="n">xmlstr</span> <span class="o">=</span> <span class="n">minidom</span><span class="o">.</span><span class="n">parseString</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="s1">&#39;   &#39;</span><span class="p">,</span> <span class="n">newl</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">md</span><span class="p">(</span><span class="s2">&quot;```xml</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">xmlstr</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span><span class="nt">&lt;feed</span><span class="w"> </span><span class="na">xmlns:relevance=</span><span class="s">&quot;http://a9.com/-/opensearch/extensions/relevance/1.0/&quot;</span><span class="w"> </span><span class="na">xmlns:os=</span><span class="s">&quot;http://a9.com/-/spec/opensearch/1.1/&quot;</span><span class="w"> </span><span class="na">xmlns:georss=</span><span class="s">&quot;http://www.georss.org/georss&quot;</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2005/Atom&quot;</span><span class="w"> </span><span class="na">xmlns:dc=</span><span class="s">&quot;http://purl.org/dc/elements/1.1/&quot;</span><span class="w"> </span><span class="na">xmlns:echo=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html#atom&quot;</span><span class="w"> </span><span class="na">xmlns:esipdiscovery=</span><span class="s">&quot;http://commons.esipfed.org/ns/discovery/1.2/&quot;</span><span class="w"> </span><span class="na">xmlns:gml=</span><span class="s">&quot;http://www.opengis.net/gml&quot;</span><span class="w"> </span><span class="na">xmlns:time=</span><span class="s">&quot;http://a9.com/-/opensearch/extensions/time/1.0/&quot;</span><span class="w"> </span><span class="na">xmlns:eo=</span><span class="s">&quot;http://a9.com/-/opensearch/extensions/eo/1.0/&quot;</span><span class="w"> </span><span class="na">esipdiscovery:version=</span><span class="s">&quot;1.2&quot;</span><span class="nt">&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;updated&gt;</span>2026-07-28T08:08:55.394Z<span class="nt">&lt;/updated&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;id&gt;</span>https://cmr.earthdata.nasa.gov/opensearch/collections.atom<span class="nt">&lt;/id&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;author&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;name&gt;</span>CMR<span class="nt">&lt;/name&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;email&gt;</span>echodev@echo.nasa.gov<span class="nt">&lt;/email&gt;</span><span class="w">      </span>
+<span class="w">     </span><span class="nt">&lt;/author&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;title</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>ECHO<span class="w"> </span>dataset<span class="w"> </span>metadata<span class="nt">&lt;/title&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;subtitle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>Search<span class="w"> </span>parameters:<span class="w"> </span>keyword<span class="w"> </span>=<span class="ni">&amp;gt;</span><span class="w"> </span>Landsat_8<span class="nt">&lt;/subtitle&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/granules/descriptor_document.xml&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/opensearchdescription+xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;search&quot;</span><span class="nt">/&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/collections.atom?keyword=Landsat_8&amp;amp;numberOfResults=10&amp;amp;clientId=ceosOpenSearchDoc&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/atom+xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;self&quot;</span><span class="nt">/&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/collections.atom?keyword=Landsat_8&amp;amp;numberOfResults=10&amp;amp;clientId=ceosOpenSearchDoc&amp;amp;cursor=1&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/atom+xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;last&quot;</span><span class="nt">/&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/collections.atom?keyword=Landsat_8&amp;amp;numberOfResults=10&amp;amp;clientId=ceosOpenSearchDoc&amp;amp;cursor=1&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/atom+xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;first&quot;</span><span class="nt">/&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://wiki.earthdata.nasa.gov/display/echo/Open+Search+API+release+information&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text/html&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;describedBy&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Release Notes&quot;</span><span class="nt">/&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;os:Query</span><span class="w"> </span><span class="na">xmlns:geo=</span><span class="s">&quot;http://a9.com/-/opensearch/extensions/geo/1.0/&quot;</span><span class="w"> </span><span class="na">role=</span><span class="s">&quot;request&quot;</span><span class="w"> </span><span class="na">os:searchTerms=</span><span class="s">&quot;Landsat_8&quot;</span><span class="nt">/&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;os:totalResults&gt;</span>1<span class="nt">&lt;/os:totalResults&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;os:itemsPerPage&gt;</span>10<span class="nt">&lt;/os:itemsPerPage&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;os:startIndex&gt;</span>1<span class="nt">&lt;/os:startIndex&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;entry&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;id&gt;</span>https://cmr.earthdata.nasa.gov/opensearch/collections.atom?uid=C1235542031-USGS_LTA<span class="nt">&lt;/id&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;author&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;name&gt;</span>CMR<span class="nt">&lt;/name&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;email&gt;</span>echodev@echo.nasa.gov<span class="nt">&lt;/email&gt;</span><span class="w">         </span>
+<span class="w">          </span><span class="nt">&lt;/author&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;consortium&gt;</span>CEOS<span class="nt">&lt;/consortium&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;consortium&gt;</span>CWIC<span class="nt">&lt;/consortium&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;title</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>Landsat<span class="w"> </span>8<span class="nt">&lt;/title&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;summary</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>The<span class="w"> </span>Operational<span class="w"> </span>Land<span class="w"> </span>Imager<span class="w"> </span>(OLI)<span class="w"> </span>and<span class="w"> </span>Thermal<span class="w"> </span>Infrared<span class="w"> </span>Sensor<span class="w"> </span>(TIRS)<span class="w"> </span>are<span class="w"> </span>onboard<span class="w"> </span>the<span class="w"> </span>Landsat<span class="w"> </span>8<span class="w"> </span>satellite,<span class="w"> </span>have<span class="w"> </span>acquired<span class="w"> </span>images<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Earth<span class="w"> </span>since<span class="w">  </span>February<span class="w"> </span>2013.<span class="w"> </span>The<span class="w"> </span>sensors<span class="w"> </span>collect<span class="w"> </span>images<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Earth<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>16-day<span class="w"> </span>repeat<span class="w"> </span>cycle,<span class="w"> </span>referenced<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>Worldwide<span class="w"> </span>Reference<span class="w"> </span>System-2.<span class="w"> </span>The<span class="w"> </span>approximate<span class="w"> </span>scene<span class="w"> </span>size<span class="w"> </span>is<span class="w"> </span>170<span class="w"> </span>km<span class="w"> </span>north-south<span class="w"> </span>by<span class="w"> </span>183<span class="w"> </span>km<span class="w"> </span>east-west<span class="w"> </span>(106<span class="w"> </span>mi<span class="w"> </span>by<span class="w"> </span>114<span class="w"> </span>mi).
+
+Landsat<span class="w"> </span>8<span class="w"> </span>image<span class="w"> </span>data<span class="w"> </span>files<span class="w"> </span>consist<span class="w"> </span>of<span class="w"> </span>11<span class="w"> </span>spectral<span class="w"> </span>bands<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>spatial<span class="w"> </span>resolution<span class="w"> </span>of<span class="w"> </span>30<span class="w"> </span>meters<span class="w"> </span>for<span class="w"> </span>bands<span class="w"> </span>1-7<span class="w"> </span>and<span class="w"> </span>bands<span class="w"> </span>9-11;<span class="w"> </span>15-meters<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>panchromatic<span class="w"> </span>band<span class="w"> </span>8.<span class="w"> </span>Delivered<span class="w"> </span>Landsat<span class="w"> </span>8<span class="w"> </span>Level-1<span class="w"> </span>data<span class="w"> </span>typically<span class="w"> </span>include<span class="w"> </span>both<span class="w"> </span>OLI<span class="w"> </span>and<span class="w"> </span>TIRS<span class="w"> </span>data<span class="w"> </span>files;<span class="w"> </span>however,<span class="w"> </span>there<span class="w"> </span>may<span class="w"> </span>be<span class="w"> </span>OLI-only<span class="w"> </span>and/or<span class="w"> </span>TIRS-only<span class="w"> </span>scenes<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>USGS<span class="w"> </span>archive.<span class="w">  </span>A<span class="w"> </span>Quality<span class="w"> </span>Assurance<span class="w"> </span>(QA.tif)<span class="w"> </span>band<span class="w"> </span>is<span class="w"> </span>also<span class="w"> </span>included.<span class="w"> </span>This<span class="w"> </span>file<span class="w"> </span>provides<span class="w"> </span>bit<span class="w"> </span>information<span class="w"> </span>regarding<span class="w"> </span>conditions<span class="w"> </span>that<span class="w"> </span>may<span class="w"> </span>affect<span class="w"> </span>the<span class="w"> </span>accuracy<span class="w"> </span>and<span class="w"> </span>usability<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>given<span class="w"> </span>pixel<span class="w"> </span>–<span class="w"> </span>clouds,<span class="w"> </span>water<span class="w"> </span>or<span class="w"> </span>snow,<span class="w"> </span>for<span class="w"> </span>example.<span class="nt">&lt;/summary&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;updated/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;enclosure&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://glovis.usgs.gov&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;enclosure&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://earthexplorer.usgs.gov&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;describedBy&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://landsat.usgs.gov/landsat8.php&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">length=</span><span class="s">&quot;0.0KB&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;http://esipfed.org/ns/fedsearch/1.1/search#&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/granules/descriptor_document.xml?collectionConceptId=C1235542031-USGS_LTA&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/granules/descriptor_document.xml?collectionConceptId=C1235542031-USGS_LTA&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/opensearchdescription+xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;search&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Non-CMR OpenSearch Provider Granule Open Search Descriptor Document&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/search/concepts/C1235542031-USGS_LTA.xml&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;via&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Product metadata&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;dc:identifier&gt;</span>C1235542031-USGS_LTA<span class="nt">&lt;/dc:identifier&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;dc:date&gt;</span>2013-02-11T00:00:00.000Z/<span class="nt">&lt;/dc:date&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:datasetId&gt;</span>Landsat<span class="w"> </span>8<span class="nt">&lt;/echo:datasetId&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:shortName&gt;</span>Landsat_8<span class="nt">&lt;/echo:shortName&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:versionId&gt;</span>Not<span class="w"> </span>provided<span class="nt">&lt;/echo:versionId&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:entryId&gt;</span>Landsat_8<span class="nt">&lt;/echo:entryId&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:dataCenter&gt;</span>USGS_LTA<span class="nt">&lt;/echo:dataCenter&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:archiveCenter&gt;</span>DOI/USGS/EROS<span class="nt">&lt;/echo:archiveCenter&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:organization&gt;</span>DOI/USGS/EROS<span class="nt">&lt;/echo:organization&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:processingLevelId&gt;</span>Not<span class="w"> </span>Provided<span class="nt">&lt;/echo:processingLevelId&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:coordinateSystem&gt;</span>CARTESIAN<span class="nt">&lt;/echo:coordinateSystem&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:orbitParameters/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;georss:box&gt;</span>-82.71<span class="w"> </span>-180<span class="w"> </span>82.74<span class="w"> </span>180<span class="nt">&lt;/georss:box&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:hasVariables&gt;</span>false<span class="nt">&lt;/echo:hasVariables&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:hasFormats&gt;</span>false<span class="nt">&lt;/echo:hasFormats&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:hasTransforms&gt;</span>false<span class="nt">&lt;/echo:hasTransforms&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:hasCombine&gt;</span>false<span class="nt">&lt;/echo:hasCombine&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:hasSpatialSubsetting&gt;</span>false<span class="nt">&lt;/echo:hasSpatialSubsetting&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:hasTemporalSubsetting&gt;</span>false<span class="nt">&lt;/echo:hasTemporalSubsetting&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:cloudHosted&gt;</span>false<span class="nt">&lt;/echo:cloudHosted&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;relevance:score&gt;</span>0.97999995<span class="nt">&lt;/relevance:score&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:tag&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;echo:tagKey&gt;</span>org.geoss.geoss_data-core<span class="nt">&lt;/echo:tagKey&gt;</span><span class="w">         </span>
+<span class="w">          </span><span class="nt">&lt;/echo:tag&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:tag&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;echo:tagKey&gt;</span>org.ceos.wgiss.cwic.granules.provider<span class="nt">&lt;/echo:tagKey&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;echo:data&gt;</span><span class="ni">&amp;quot;</span>USGSLSI<span class="ni">&amp;quot;</span><span class="nt">&lt;/echo:data&gt;</span><span class="w">         </span>
+<span class="w">          </span><span class="nt">&lt;/echo:tag&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:tag&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;echo:tagKey&gt;</span>org.ceos.wgiss.cwic.granules.prod<span class="nt">&lt;/echo:tagKey&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;echo:data&gt;</span><span class="ni">&amp;quot;</span><span class="w"> </span><span class="ni">&amp;quot;</span><span class="nt">&lt;/echo:data&gt;</span><span class="w">         </span>
+<span class="w">          </span><span class="nt">&lt;/echo:tag&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:tag&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;echo:tagKey&gt;</span>gov.nasa.eosdis<span class="nt">&lt;/echo:tagKey&gt;</span><span class="w">         </span>
+<span class="w">          </span><span class="nt">&lt;/echo:tag&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:is_geoss&gt;</span>true<span class="nt">&lt;/echo:is_geoss&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:is_eosdis&gt;</span>true<span class="nt">&lt;/echo:is_eosdis&gt;</span><span class="w">      </span>
+<span class="w">     </span><span class="nt">&lt;/entry&gt;</span><span class="w">   </span>
+<span class="nt">&lt;/feed&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Step 3</strong></p>
+<blockquote>
+<div><p>From the IDN OpenSearch response obtain the OSDD endpoint for the collection by parsing the href attribute in the <code class="docutils literal notranslate"><span class="pre">&lt;link</span> <span class="pre">rel=&quot;search&quot;</span> <span class="pre">type=&quot;application/opensearchdescription+xml&quot;</span> <span class="pre">/&gt;</span></code> element. Note that the OSDD endpoint may refer to CWIC or FedEO.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">request_url</span> <span class="o">=</span> <span class="n">get_api_request</span><span class="p">(</span><span class="n">collection_template</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;geo:uid&#39;</span><span class="p">:</span> <span class="s1">&#39;C1235542031-USGS_LTA&#39;</span><span class="p">})</span>
+<span class="n">request_url</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://cmr.earthdata.nasa.gov/opensearch/collections.atom?&amp;numberOfResults=10&amp;uid=C1235542031-USGS_LTA&amp;clientId=ceosOpenSearchDoc&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="n">request_url</span> <span class="p">)</span>
+<span class="n">xmlstr</span> <span class="o">=</span> <span class="n">minidom</span><span class="o">.</span><span class="n">parseString</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="s1">&#39;   &#39;</span><span class="p">,</span> <span class="n">newl</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">md</span><span class="p">(</span><span class="s2">&quot;```xml</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">xmlstr</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span><span class="nt">&lt;feed</span><span class="w"> </span><span class="na">xmlns:os=</span><span class="s">&quot;http://a9.com/-/spec/opensearch/1.1/&quot;</span><span class="w"> </span><span class="na">xmlns:georss=</span><span class="s">&quot;http://www.georss.org/georss&quot;</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2005/Atom&quot;</span><span class="w"> </span><span class="na">xmlns:dc=</span><span class="s">&quot;http://purl.org/dc/elements/1.1/&quot;</span><span class="w"> </span><span class="na">xmlns:echo=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html#atom&quot;</span><span class="w"> </span><span class="na">xmlns:esipdiscovery=</span><span class="s">&quot;http://commons.esipfed.org/ns/discovery/1.2/&quot;</span><span class="w"> </span><span class="na">xmlns:gml=</span><span class="s">&quot;http://www.opengis.net/gml&quot;</span><span class="w"> </span><span class="na">xmlns:time=</span><span class="s">&quot;http://a9.com/-/opensearch/extensions/time/1.0/&quot;</span><span class="w"> </span><span class="na">xmlns:eo=</span><span class="s">&quot;http://a9.com/-/opensearch/extensions/eo/1.0/&quot;</span><span class="w"> </span><span class="na">esipdiscovery:version=</span><span class="s">&quot;1.2&quot;</span><span class="nt">&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;updated&gt;</span>2026-07-28T08:08:55.625Z<span class="nt">&lt;/updated&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;id&gt;</span>https://cmr.earthdata.nasa.gov/opensearch/collections.atom<span class="nt">&lt;/id&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;author&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;name&gt;</span>CMR<span class="nt">&lt;/name&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;email&gt;</span>echodev@echo.nasa.gov<span class="nt">&lt;/email&gt;</span><span class="w">      </span>
+<span class="w">     </span><span class="nt">&lt;/author&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;title</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>ECHO<span class="w"> </span>dataset<span class="w"> </span>metadata<span class="nt">&lt;/title&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;subtitle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>Search<span class="w"> </span>parameters:<span class="w"> </span>uid<span class="w"> </span>=<span class="ni">&amp;gt;</span><span class="w"> </span>C1235542031-USGS_LTA<span class="nt">&lt;/subtitle&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/granules/descriptor_document.xml&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/opensearchdescription+xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;search&quot;</span><span class="nt">/&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/collections.atom?&amp;amp;numberOfResults=10&amp;amp;uid=C1235542031-USGS_LTA&amp;amp;clientId=ceosOpenSearchDoc&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/atom+xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;self&quot;</span><span class="nt">/&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/collections.atom?&amp;amp;numberOfResults=10&amp;amp;uid=C1235542031-USGS_LTA&amp;amp;clientId=ceosOpenSearchDoc&amp;amp;cursor=1&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/atom+xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;last&quot;</span><span class="nt">/&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/collections.atom?&amp;amp;numberOfResults=10&amp;amp;uid=C1235542031-USGS_LTA&amp;amp;clientId=ceosOpenSearchDoc&amp;amp;cursor=1&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/atom+xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;first&quot;</span><span class="nt">/&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://wiki.earthdata.nasa.gov/display/echo/Open+Search+API+release+information&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text/html&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;describedBy&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Release Notes&quot;</span><span class="nt">/&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;os:Query</span><span class="w"> </span><span class="na">xmlns:geo=</span><span class="s">&quot;http://a9.com/-/opensearch/extensions/geo/1.0/&quot;</span><span class="w"> </span><span class="na">role=</span><span class="s">&quot;request&quot;</span><span class="w"> </span><span class="na">geo:uid=</span><span class="s">&quot;C1235542031-USGS_LTA&quot;</span><span class="nt">/&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;os:totalResults&gt;</span>1<span class="nt">&lt;/os:totalResults&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;os:itemsPerPage&gt;</span>10<span class="nt">&lt;/os:itemsPerPage&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;os:startIndex&gt;</span>1<span class="nt">&lt;/os:startIndex&gt;</span><span class="w">   </span>
+<span class="w">     </span><span class="nt">&lt;entry&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;id&gt;</span>https://cmr.earthdata.nasa.gov/opensearch/collections.atom?uid=C1235542031-USGS_LTA<span class="nt">&lt;/id&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;author&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;name&gt;</span>CMR<span class="nt">&lt;/name&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;email&gt;</span>echodev@echo.nasa.gov<span class="nt">&lt;/email&gt;</span><span class="w">         </span>
+<span class="w">          </span><span class="nt">&lt;/author&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;consortium&gt;</span>CEOS<span class="nt">&lt;/consortium&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;consortium&gt;</span>CWIC<span class="nt">&lt;/consortium&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;title</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>Landsat<span class="w"> </span>8<span class="nt">&lt;/title&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;summary</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text&quot;</span><span class="nt">&gt;</span>The<span class="w"> </span>Operational<span class="w"> </span>Land<span class="w"> </span>Imager<span class="w"> </span>(OLI)<span class="w"> </span>and<span class="w"> </span>Thermal<span class="w"> </span>Infrared<span class="w"> </span>Sensor<span class="w"> </span>(TIRS)<span class="w"> </span>are<span class="w"> </span>onboard<span class="w"> </span>the<span class="w"> </span>Landsat<span class="w"> </span>8<span class="w"> </span>satellite,<span class="w"> </span>have<span class="w"> </span>acquired<span class="w"> </span>images<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Earth<span class="w"> </span>since<span class="w">  </span>February<span class="w"> </span>2013.<span class="w"> </span>The<span class="w"> </span>sensors<span class="w"> </span>collect<span class="w"> </span>images<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>Earth<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>16-day<span class="w"> </span>repeat<span class="w"> </span>cycle,<span class="w"> </span>referenced<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>Worldwide<span class="w"> </span>Reference<span class="w"> </span>System-2.<span class="w"> </span>The<span class="w"> </span>approximate<span class="w"> </span>scene<span class="w"> </span>size<span class="w"> </span>is<span class="w"> </span>170<span class="w"> </span>km<span class="w"> </span>north-south<span class="w"> </span>by<span class="w"> </span>183<span class="w"> </span>km<span class="w"> </span>east-west<span class="w"> </span>(106<span class="w"> </span>mi<span class="w"> </span>by<span class="w"> </span>114<span class="w"> </span>mi).
+
+Landsat<span class="w"> </span>8<span class="w"> </span>image<span class="w"> </span>data<span class="w"> </span>files<span class="w"> </span>consist<span class="w"> </span>of<span class="w"> </span>11<span class="w"> </span>spectral<span class="w"> </span>bands<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>spatial<span class="w"> </span>resolution<span class="w"> </span>of<span class="w"> </span>30<span class="w"> </span>meters<span class="w"> </span>for<span class="w"> </span>bands<span class="w"> </span>1-7<span class="w"> </span>and<span class="w"> </span>bands<span class="w"> </span>9-11;<span class="w"> </span>15-meters<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>panchromatic<span class="w"> </span>band<span class="w"> </span>8.<span class="w"> </span>Delivered<span class="w"> </span>Landsat<span class="w"> </span>8<span class="w"> </span>Level-1<span class="w"> </span>data<span class="w"> </span>typically<span class="w"> </span>include<span class="w"> </span>both<span class="w"> </span>OLI<span class="w"> </span>and<span class="w"> </span>TIRS<span class="w"> </span>data<span class="w"> </span>files;<span class="w"> </span>however,<span class="w"> </span>there<span class="w"> </span>may<span class="w"> </span>be<span class="w"> </span>OLI-only<span class="w"> </span>and/or<span class="w"> </span>TIRS-only<span class="w"> </span>scenes<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>USGS<span class="w"> </span>archive.<span class="w">  </span>A<span class="w"> </span>Quality<span class="w"> </span>Assurance<span class="w"> </span>(QA.tif)<span class="w"> </span>band<span class="w"> </span>is<span class="w"> </span>also<span class="w"> </span>included.<span class="w"> </span>This<span class="w"> </span>file<span class="w"> </span>provides<span class="w"> </span>bit<span class="w"> </span>information<span class="w"> </span>regarding<span class="w"> </span>conditions<span class="w"> </span>that<span class="w"> </span>may<span class="w"> </span>affect<span class="w"> </span>the<span class="w"> </span>accuracy<span class="w"> </span>and<span class="w"> </span>usability<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>given<span class="w"> </span>pixel<span class="w"> </span>–<span class="w"> </span>clouds,<span class="w"> </span>water<span class="w"> </span>or<span class="w"> </span>snow,<span class="w"> </span>for<span class="w"> </span>example.<span class="nt">&lt;/summary&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;updated/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;enclosure&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://glovis.usgs.gov&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;enclosure&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://earthexplorer.usgs.gov&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;describedBy&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;http://landsat.usgs.gov/landsat8.php&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">length=</span><span class="s">&quot;0.0KB&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;http://esipfed.org/ns/fedsearch/1.1/search#&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/granules/descriptor_document.xml?collectionConceptId=C1235542031-USGS_LTA&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/granules/descriptor_document.xml?collectionConceptId=C1235542031-USGS_LTA&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/opensearchdescription+xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;search&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Non-CMR OpenSearch Provider Granule Open Search Descriptor Document&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/search/concepts/C1235542031-USGS_LTA.xml&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;via&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Product metadata&quot;</span><span class="nt">/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;dc:identifier&gt;</span>C1235542031-USGS_LTA<span class="nt">&lt;/dc:identifier&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;dc:date&gt;</span>2013-02-11T00:00:00.000Z/<span class="nt">&lt;/dc:date&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:datasetId&gt;</span>Landsat<span class="w"> </span>8<span class="nt">&lt;/echo:datasetId&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:shortName&gt;</span>Landsat_8<span class="nt">&lt;/echo:shortName&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:versionId&gt;</span>Not<span class="w"> </span>provided<span class="nt">&lt;/echo:versionId&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:entryId&gt;</span>Landsat_8<span class="nt">&lt;/echo:entryId&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:dataCenter&gt;</span>USGS_LTA<span class="nt">&lt;/echo:dataCenter&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:archiveCenter&gt;</span>DOI/USGS/EROS<span class="nt">&lt;/echo:archiveCenter&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:organization&gt;</span>DOI/USGS/EROS<span class="nt">&lt;/echo:organization&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:processingLevelId&gt;</span>Not<span class="w"> </span>Provided<span class="nt">&lt;/echo:processingLevelId&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:coordinateSystem&gt;</span>CARTESIAN<span class="nt">&lt;/echo:coordinateSystem&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:orbitParameters/&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;georss:box&gt;</span>-82.71<span class="w"> </span>-180<span class="w"> </span>82.74<span class="w"> </span>180<span class="nt">&lt;/georss:box&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:hasVariables&gt;</span>false<span class="nt">&lt;/echo:hasVariables&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:hasFormats&gt;</span>false<span class="nt">&lt;/echo:hasFormats&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:hasTransforms&gt;</span>false<span class="nt">&lt;/echo:hasTransforms&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:hasCombine&gt;</span>false<span class="nt">&lt;/echo:hasCombine&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:hasSpatialSubsetting&gt;</span>false<span class="nt">&lt;/echo:hasSpatialSubsetting&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:hasTemporalSubsetting&gt;</span>false<span class="nt">&lt;/echo:hasTemporalSubsetting&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:cloudHosted&gt;</span>false<span class="nt">&lt;/echo:cloudHosted&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:tag&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;echo:tagKey&gt;</span>org.geoss.geoss_data-core<span class="nt">&lt;/echo:tagKey&gt;</span><span class="w">         </span>
+<span class="w">          </span><span class="nt">&lt;/echo:tag&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:tag&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;echo:tagKey&gt;</span>org.ceos.wgiss.cwic.granules.provider<span class="nt">&lt;/echo:tagKey&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;echo:data&gt;</span><span class="ni">&amp;quot;</span>USGSLSI<span class="ni">&amp;quot;</span><span class="nt">&lt;/echo:data&gt;</span><span class="w">         </span>
+<span class="w">          </span><span class="nt">&lt;/echo:tag&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:tag&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;echo:tagKey&gt;</span>org.ceos.wgiss.cwic.granules.prod<span class="nt">&lt;/echo:tagKey&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;echo:data&gt;</span><span class="ni">&amp;quot;</span><span class="w"> </span><span class="ni">&amp;quot;</span><span class="nt">&lt;/echo:data&gt;</span><span class="w">         </span>
+<span class="w">          </span><span class="nt">&lt;/echo:tag&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:tag&gt;</span><span class="w">         </span>
+<span class="w">               </span><span class="nt">&lt;echo:tagKey&gt;</span>gov.nasa.eosdis<span class="nt">&lt;/echo:tagKey&gt;</span><span class="w">         </span>
+<span class="w">          </span><span class="nt">&lt;/echo:tag&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:is_geoss&gt;</span>true<span class="nt">&lt;/echo:is_geoss&gt;</span><span class="w">      </span>
+<span class="w">          </span><span class="nt">&lt;echo:is_eosdis&gt;</span>true<span class="nt">&lt;/echo:is_eosdis&gt;</span><span class="w">      </span>
+<span class="w">     </span><span class="nt">&lt;/entry&gt;</span><span class="w">   </span>
+<span class="nt">&lt;/feed&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Obtain the OSDD endpoint for the granule search for this collection by parsing the href attribute in <code class="docutils literal notranslate"><span class="pre">&lt;link</span> <span class="pre">rel=&quot;search&quot;</span> <span class="pre">type=&quot;application/opensearchdescription+xml&quot;</span> <span class="pre">&gt;</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="c1"># Extract &lt;link&gt; element with the OSDD for the granule search with Atom response</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;{http://www.w3.org/2005/Atom}entry/{http://www.w3.org/2005/Atom}link[@rel=&quot;search&quot;][@type=&quot;application/opensearchdescription+xml&quot;]&#39;</span><span class="p">)</span>
+<span class="n">xmltxt</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">)</span>
+<span class="n">md</span><span class="p">(</span><span class="s2">&quot;```xml</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">xmltxt</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;ns0:link</span><span class="w"> </span><span class="na">xmlns:ns0=</span><span class="s">&quot;http://www.w3.org/2005/Atom&quot;</span><span class="w"> </span><span class="na">href=</span><span class="s">&quot;https://cmr.earthdata.nasa.gov/opensearch/granules/descriptor_document.xml?collectionConceptId=C1235542031-USGS_LTA&quot;</span><span class="w"> </span><span class="na">hreflang=</span><span class="s">&quot;en-US&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;application/opensearchdescription+xml&quot;</span><span class="w"> </span><span class="na">rel=</span><span class="s">&quot;search&quot;</span><span class="w"> </span><span class="na">title=</span><span class="s">&quot;Non-CMR OpenSearch Provider Granule Open Search Descriptor Document&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Extract the URL of the OSDD endpoint from the <code class="docutils literal notranslate"><span class="pre">&lt;link&gt;</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url_osdd</span> <span class="o">=</span> <span class="n">el</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+<span class="n">el</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://cmr.earthdata.nasa.gov/opensearch/granules/descriptor_document.xml?collectionConceptId=C1235542031-USGS_LTA&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Step 4</strong></p>
+<blockquote>
+<div><p>From the collection OSDD found in the IDN OpenSearch response, formulate a valid granule search request. How to do this is explained in sections (“CWIC”) and  <a class="reference internal" href="opensearch_8_fedeo.html#chapter-fedeo"><span class="std std-ref">“FedEO”</span></a>.</p>
+</div></blockquote>
+<p>In principle, CEOS OpenSearch clients compliant with CEOS OpenSearch Best Practices should
+not care whether the second step (i.e. Granule search) redirects to CWIC or FedEO as both
+endpoints provide the same interface which clients should discover by obtaining the OSDD.
+Search parameters in the URL template which are specific to one of both endpoints (i.e. not defined
+in the CEOS Best Practice for OpenSearch or belonging to a foreign namespace) can be left empty
+when preparing the granule search request.</p>
+</section>
+<section id="available-collection-search-criteria">
+<span id="section-available-collection-search-criteria-idn"></span><h2>Available Collection Search Criteria<a class="headerlink" href="#available-collection-search-criteria" title="Link to this heading">#</a></h2>
+<p>CEOS OpenSearch is used as the IDN’s collections search implementation based on
+the <a class="reference external" href="https://github.com/dewitt/opensearch/blob/master/opensearch-1-1-draft-6.md">OpenSearch 1.1 (Draft 5) specification</a> and is compliant with the CEOS OpenSearch Best
+Practices. The IDN OpenSearch API allows clients to formulate OpenSearch compliant queries
+against the IDN collections and specify the desired search results format as OpenSearch
+compliant Atom or HTML. The IDN OpenSearch API implements the following search fields for
+users’ queries:</p>
+<p><strong>Table of collection search criteria</strong></p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html">
+<table>
+
+<tr><th>HTTP Query<br/>
+Parameter</th><th align="left">
+Description
+</th><th>Value &
+Cardinality<br/>
+(M) = mandatory<br/>
+(O) = optional
+</th><th>
+OpenSearch Parameter</th></tr>
+
+
+<tr><td>boundingBox</td><td align="left"> Inventory with a spatial extent overlapping
+this bounding box
+</td><td>(O)</td><td> geo:box</td></tr>
+
+<tr><td>keyword</td><td align="left"> Inventory with terms expressed by these
+search terms
+</td><td>(O)</td><td> os:searchTerms</td></tr>
+
+<tr><td>instrument</td><td align="left"> Inventory associated with a satellite
+instrument expressed by this short name
+</td><td>(O)</td><td> echo:instrument</td></tr>
+
+
+<tr><td>satellite</td><td align="left"> Inventory associated with a
+Satellite/platform expressed by this short
+name
+</td><td>(O)</td><td> eo:platform</td></tr>
+
+<tr><td>geometry</td><td align="left"> Inventory with a spatial extent overlapping
+this geometry
+</td><td>(O)</td><td> geo:geometry</td></tr>
+
+<tr><td>placeName</td><td align="left"> Inventory with a spatial location described
+by this name
+</td><td>(O)</td><td> geo:name</td></tr>
+
+<tr><td>startTime</td><td align="left"> Inventory with a temporal extent containing
+this start time
+</td><td>(O)</td><td> time:start</td></tr>
+
+<tr><td>endTime</td><td align="left"> Inventory with a temporal extent containing
+this end time
+</td><td>(O)</td><td> time:end</td></tr>
+
+
+<tr><td>cursor</td><td align="left"> Start page for the search result </td><td>(O)</td><td> os:startPage</td></tr>
+
+<tr><td>numberOfResults</td><td align="left"> Maximum number of records in the search
+result
+</td><td>(O)</td><td> os:count</td></tr>
+
+
+<tr><td>offset</td><td align="left"> 0 - based offset used to skip the specified
+number of results in the search result set
+</td><td>(O)</td><td> os:startIndex</td></tr>
+
+<tr><td>uid</td><td align="left"> Inventory associated with this unique ID</td><td>(O)</td><td> geo:uid</td></tr>
+<tr><td>hasGranules</td><td align="left"> Inventory with granules</td><td>(O)</td><td> echo:hasGranules</td></tr>
+<tr><td>isCwic</td><td align="left"> Inventory related to CWIC</td><td>(O)</td><td> echo:isCwic</td></tr>
+<tr><td>isGeoss</td><td align="left"> Inventory related to GEOSS</td><td>(O)</td><td> echo:isGeoss</td></tr>
+<tr><td>isCeos</td><td align="left"> Inventory related to CEOS</td><td>(O)</td><td></td></tr>
+<tr><td>isEosdis</td><td align="left"> Inventory related to EOSDIS</td><td>(O)</td><td> echo:isEosdis</td></tr>
+<tr><td>provider</td><td align="left"> Inventory associated with a provider</td><td>(O)</td><td> echo:provider</td></tr>
+<tr><td>clientId</td><td align="left"> Client identifier to be used for metrics</td><td>(O)</td><td> cswOpenSearchDoc</td></tr>
+
+</table>
+</div></div>
+</div>
+<p>Also, client developers are able to query with specific tags: isCeos, isCwic, isGeoss, and isFedEO.
+Tagging allows arbitrary sets of collections to be grouped under a single namespace value. The
+sets of collections can be recalled later when searching by tag fields.</p>
+<p>IDN query examples:</p>
+<ul class="simple">
+<li><p>GET the first 10 IDN collections with results in the Atom format:
+<a class="reference external" href="https://cmr.earthdata.nasa.gov/opensearch/collections.atom?numberOfResults=10&amp;amp;clientId=cswOpenSearchDoc">https://cmr.earthdata.nasa.gov/opensearch/collections.atom?numberOfResults=10&amp;clientId=cswOpenSearchDoc</a></p></li>
+<li><p>GET the first 10 IDN collections containing the GCMD instrument keyword MODIS
+with results in the Atom output format:
+<a class="reference external" href="https://cmr.earthdata.nasa.gov/opensearch/collections.atom?instrument=MODIS&amp;amp;numberOfResults=10&amp;amp;clientId=cswOpenSearchDoc">https://cmr.earthdata.nasa.gov/opensearch/collections.atom?instrument=MODIS&amp;numberOfResults=10&amp;clientId=cswOpenSearchDoc</a></p></li>
+<li><p>GET the first 10 CWIC IDN collections containing the GCMD instrument keyword
+MODIS with results in the HTML format:
+<a class="reference external" href="https://cmr.earthdata.nasa.gov/opensearch/collections?instrument=MODIS&amp;amp;isCwic=true&amp;amp;numberOfResults=10&amp;amp;clientId=cswOpenSearchDoc">https://cmr.earthdata.nasa.gov/opensearch/collections?instrument=MODIS&amp;isCwic=true&amp;numberOfResults=10&amp;clientId=cswOpenSearchDoc</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="opensearch_5_outline.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Client Partner Implementation Outline</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="opensearch_7_cmr.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Use Case - Granule Search (CWIC/CMR)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idn-systems">IDN Systems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-collections-via-idn-opensearch">Retrieve Collections via IDN OpenSearch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#available-collection-search-criteria">Available Collection Search Criteria</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CEOS WGISS DAIG
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
