@@ -1,34 +1,61 @@
 name: deploy-book
 
-# Run this when the master or main branch changes
+# Publishes each ref to its own subpath of GitHub Pages, e.g.
+#   main   -> https://ceos-org.github.io/wgiss-cda/main/
+#   v1.0.0 -> https://ceos-org.github.io/wgiss-cda/v1.0.0/
+#
+# NOTE: no `paths:` filter here on purpose. A path filter is evaluated against
+# the pushed commit range, which is empty when a tag is pushed onto a commit
+# that is already on main -- the run would silently be skipped.
 on:
   workflow_dispatch:
+    inputs:
+      subpath:
+        description: "Subpath to publish to (defaults to the branch/tag name)"
+        required: false
+      dry_run:
+        description: "Build and stage the commit, but do not push to gh-pages"
+        type: boolean
+        default: false
   push:
     branches:
       - master
       - main
-    # If your git repository has the Jupyter Book within some-subfolder next to
-    # unrelated files, you can make this run only if a file within that specific
-    # folder has been modified.
-    #
-    paths:
-      - book/**
+    tags:
+      - "v*"
 
-# This job installs dependencies, builds the book, and pushes it to `gh-pages`
+concurrency:
+  # Serialise pushes to gh-pages so two builds can't race on the same branch
+  group: gh-pages
+  cancel-in-progress: false
+
 jobs:
   deploy-book:
     runs-on: ubuntu-latest
     permissions:
-      pages: write
-      id-token: write
+      contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      # Resolve the Pages subpath for this ref. Branch names may contain "/",
+      # which would create nested directories, so flatten them.
+      - name: Resolve target subpath
+        id: target
+        env:
+          INPUT_SUBPATH: ${{ inputs.subpath }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          slug="${INPUT_SUBPATH:-$REF_NAME}"
+          slug="${slug//\//-}"
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+          echo "Publishing to /$slug/"
 
       # Install dependencies
       - name: Set up Python 3.11
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
@@ -39,7 +66,7 @@ jobs:
       # execute:
       #   execute_notebooks: cache
       - name: cache executed notebooks
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: _build/.jupyter_cache
           key: jupyter-book-cache-${{ hashFiles('requirements.txt') }}
@@ -49,13 +76,14 @@ jobs:
         run: |
           jupyter-book build ./book
 
-      # Upload the book's HTML as an artifact
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "book/_build/html"
-
-      # Deploy the book's HTML to GitHub Pages
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # Copy the build into <subpath>/ on the gh-pages branch, leaving every
+      # other version untouched, and regenerate the root version index.
+      # Same script you can dry-run locally -- see .github/scripts/publish-version.sh
+      - name: Publish to gh-pages
+        env:
+          SLUG: ${{ steps.target.outputs.slug }}
+          BUILD_DIR: book/_build/html
+          REMOTE: https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          SOURCE_REF: ${{ github.ref_name }}@${{ github.sha }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+        run: .github/scripts/publish-version.sh
