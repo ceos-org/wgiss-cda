@@ -7,4 +7,6 @@ The formatted document is available as [![Jupyter Book Badge](https://jupyter-bo
 
 [https://ceos-org.github.io/wgiss-cda](https://ceos-org.github.io/wgiss-cda)
 
-It replaces the previous version [WGISS Connected Data Assets Client Partner Guide (OpenSearch)](https://ceos.org/document_management/Working_Groups/WGISS/Documents/Discovery-Access/WGISS%20CDA%20OpenSearch%20Client%20Guide.pdf).
+All built versions can be found at https://ceos-org.github.io/wgiss-cda/versions.html
+
+These replaces the previous version [WGISS Connected Data Assets Client Partner Guide (OpenSearch)](https://ceos.org/document_management/Working_Groups/WGISS/Documents/Discovery-Access/WGISS%20CDA%20OpenSearch%20Client%20Guide.pdf).
