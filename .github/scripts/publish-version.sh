@@ -75,10 +75,10 @@ printf '%s\t%s\n' "$(date -u '+%Y-%m-%d %H:%M UTC')" "$short_sha" \
   echo '<!doctype html>'
   echo '<html lang="en"><head><meta charset="utf-8">'
   echo '<meta name="viewport" content="width=device-width, initial-scale=1">'
-  echo '<title>CDA Partner Guide OpenSearch -- versions</title>'
+  echo '<title>CDA Partner Guide -- versions</title>'
   echo '<style>body{font-family:system-ui,sans-serif;max-width:40rem;margin:4rem auto;padding:0 1rem;line-height:1.6}</style>'
   echo '</head><body>'
-  echo '<h1>CDA Partner Guide OpenSearch</h1>'
+  echo '<h1>CDA Partner Guide</h1>'
   echo '<p>Published versions:</p><ul>'
   for dir in "$site"/*/; do
     name="$(basename "$dir")"
@@ -101,7 +101,7 @@ if [ -d "$site/$DEFAULT_VERSION" ]; then
   {
     echo '<!doctype html>'
     echo '<html lang="en"><head><meta charset="utf-8">'
-    printf '<title>CDA Partner Guide OpenSearch</title>\n'
+    printf '<title>CDA Partner Guide</title>\n'
     printf '<link rel="canonical" href="%s/">\n' "$DEFAULT_VERSION"
     printf '<meta http-equiv="refresh" content="0; url=%s/">\n' "$DEFAULT_VERSION"
     # location.replace keeps the redirect out of the back-button history, and
