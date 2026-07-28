@@ -5,11 +5,12 @@
 # version index.
 #
 # Env:
-#   SLUG        subpath to publish into, e.g. "main" or "v1.0.0"   (required)
-#   BUILD_DIR   directory holding the built HTML                   (required)
-#   REMOTE      git URL to push to; a local path works for testing (required)
-#   SOURCE_REF  short ref/sha used in the commit message           (optional)
-#   DRY_RUN     if "1", do everything except the final push        (optional)
+#   SLUG             subpath to publish into, e.g. "main" or "v1.0.0"  (required)
+#   BUILD_DIR        directory holding the built HTML                  (required)
+#   REMOTE           git URL to push to; a local path works in tests   (required)
+#   SOURCE_REF       short ref/sha used in the commit message          (optional)
+#   DEFAULT_VERSION  version the site root redirects to; default main  (optional)
+#   DRY_RUN          if "1", do everything except the final push       (optional)
 #
 set -euo pipefail
 
@@ -17,6 +18,7 @@ set -euo pipefail
 : "${BUILD_DIR:?BUILD_DIR is required}"
 : "${REMOTE:?REMOTE is required}"
 SOURCE_REF="${SOURCE_REF:-unknown}"
+DEFAULT_VERSION="${DEFAULT_VERSION:-main}"
 DRY_RUN="${DRY_RUN:-0}"
 
 if [ ! -d "$BUILD_DIR" ]; then
@@ -24,13 +26,13 @@ if [ ! -d "$BUILD_DIR" ]; then
   exit 1
 fi
 
-# Reject slugs that would escape the site root or collide with git's own dir.
-case "$SLUG" in
-  ""|.|..|.git|*/*|*..*)
-    echo "Refusing unsafe SLUG '$SLUG'" >&2
-    exit 1
-    ;;
-esac
+# Reject slugs that could escape the site root, collide with git's own dir, or
+# need escaping once interpolated into the HTML below.
+if ! printf '%s' "$SLUG" | grep -Eq '^[A-Za-z0-9][A-Za-z0-9._-]*$' \
+   || [ "$SLUG" = ".git" ] || case "$SLUG" in *..*) true ;; *) false ;; esac; then
+  echo "Refusing unsafe SLUG '$SLUG'" >&2
+  exit 1
+fi
 
 site="$(mktemp -d)"
 trap 'rm -rf "$site"' EXIT
@@ -59,12 +61,12 @@ cp -a "$BUILD_DIR/." "$site/$SLUG/"
 # Sphinx output contains _static/, _sources/ ... which Jekyll would drop.
 touch "$site/.nojekyll"
 
-# Root landing page listing whatever versions now exist.
+# versions.html always lists whatever versions now exist.
 {
   echo '<!doctype html>'
   echo '<html lang="en"><head><meta charset="utf-8">'
   echo '<meta name="viewport" content="width=device-width, initial-scale=1">'
-  echo '<title>CDA Partner Guide OpenSearch</title>'
+  echo '<title>CDA Partner Guide OpenSearch -- versions</title>'
   echo '<style>body{font-family:system-ui,sans-serif;max-width:40rem;margin:4rem auto;padding:0 1rem;line-height:1.6}</style>'
   echo '</head><body>'
   echo '<h1>CDA Partner Guide OpenSearch</h1>'
@@ -74,7 +76,31 @@ touch "$site/.nojekyll"
     printf '<li><a href="%s/">%s</a></li>\n' "$name" "$name"
   done
   echo '</ul></body></html>'
-} > "$site/index.html"
+} > "$site/versions.html"
+
+# The site root redirects to DEFAULT_VERSION -- but only once that version has
+# actually been published, otherwise the root would point at a 404. Until then
+# the root shows the version list instead.
+if [ -d "$site/$DEFAULT_VERSION" ]; then
+  echo "Root redirects to /$DEFAULT_VERSION/"
+  {
+    echo '<!doctype html>'
+    echo '<html lang="en"><head><meta charset="utf-8">'
+    printf '<title>CDA Partner Guide OpenSearch</title>\n'
+    printf '<link rel="canonical" href="%s/">\n' "$DEFAULT_VERSION"
+    printf '<meta http-equiv="refresh" content="0; url=%s/">\n' "$DEFAULT_VERSION"
+    # location.replace keeps the redirect out of the back-button history, and
+    # forwards any deep link's query/fragment.
+    printf '<script>location.replace("%s/" + location.search + location.hash);</script>\n' "$DEFAULT_VERSION"
+    echo '</head><body>'
+    printf '<p>Redirecting to <a href="%s/">%s</a> &mdash; or see <a href="versions.html">all versions</a>.</p>\n' \
+      "$DEFAULT_VERSION" "$DEFAULT_VERSION"
+    echo '</body></html>'
+  } > "$site/index.html"
+else
+  echo "No '$DEFAULT_VERSION' directory yet, root shows the version list."
+  cp "$site/versions.html" "$site/index.html"
+fi
 
 git -C "$site" add -A
 if git -C "$site" diff --cached --quiet; then

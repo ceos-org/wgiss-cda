@@ -85,5 +85,7 @@ jobs:
           BUILD_DIR: book/_build/html
           REMOTE: https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           SOURCE_REF: ${{ github.ref_name }}@${{ github.sha }}
+          # Which version the site root redirects to
+          DEFAULT_VERSION: main
           DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
         run: .github/scripts/publish-version.sh
