@@ -13,7 +13,7 @@ parts:
     - file: scope
     - file: references  
     - file: before_you_begin
-    - file: stac/outline.md
+    - file: stac/outline
       title: STAC Client Implementation Outline
       sections:
       - file: stac/idn.md
