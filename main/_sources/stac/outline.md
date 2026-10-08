@@ -1,4 +1,0 @@
-# STAC Client Guide
-
-TBD
-
