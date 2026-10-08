@@ -488,7 +488,7 @@ parameters with proper values.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">URL_OSDD</span> <span class="o">=</span> <span class="s2">&quot;https://cmr.earthdata.nasa.gov/opensearch/collections/descriptor_document.xml?clientId=ceosOpenSearchDoc&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">URL_OSDD</span> <span class="o">=</span> <span class="s2">"https://cmr.earthdata.nasa.gov/opensearch/collections/descriptor_document.xml?clientId=ceosOpenSearchDoc"</span>
 </pre></div>
 </div>
 </div>
@@ -506,10 +506,10 @@ parameters with proper values.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># find URL template for collection search</span>
 <span class="n">root</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
-<span class="n">ns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;os&#39;</span><span class="p">:</span> <span class="s1">&#39;http://a9.com/-/spec/opensearch/1.1/&#39;</span><span class="p">}</span>
-<span class="n">collection_url_atom</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;os:Url[@rel=&quot;collection&quot;][@type=&quot;application/atom+xml&quot;]&#39;</span><span class="p">,</span> <span class="n">ns</span><span class="p">)</span>
+<span class="n">ns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'os'</span><span class="p">:</span> <span class="s1">'http://a9.com/-/spec/opensearch/1.1/'</span><span class="p">}</span>
+<span class="n">collection_url_atom</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'os:Url[@rel="collection"][@type="application/atom+xml"]'</span><span class="p">,</span> <span class="n">ns</span><span class="p">)</span>
 
-<span class="n">collection_template</span> <span class="o">=</span> <span class="n">collection_url_atom</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;template&#39;</span><span class="p">]</span>
+<span class="n">collection_template</span> <span class="o">=</span> <span class="n">collection_url_atom</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'template'</span><span class="p">]</span>
 <span class="n">collection_template</span>
 </pre></div>
 </div>
@@ -517,7 +517,7 @@ parameters with proper values.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">request_url</span> <span class="o">=</span> <span class="n">get_api_request</span><span class="p">(</span><span class="n">collection_template</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;searchTerms&#39;</span><span class="p">:</span> <span class="s1">&#39;Landsat_8&#39;</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">request_url</span> <span class="o">=</span> <span class="n">get_api_request</span><span class="p">(</span><span class="n">collection_template</span><span class="p">,</span> <span class="p">{</span><span class="s1">'count'</span><span class="p">:</span> <span class="s1">'10'</span><span class="p">,</span> <span class="s1">'searchTerms'</span><span class="p">:</span> <span class="s1">'Landsat_8'</span><span class="p">})</span>
 <span class="n">request_url</span>
 </pre></div>
 </div>
@@ -526,8 +526,8 @@ parameters with proper values.</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="n">request_url</span> <span class="p">)</span>
-<span class="n">xmlstr</span> <span class="o">=</span> <span class="n">minidom</span><span class="o">.</span><span class="n">parseString</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="s1">&#39;   &#39;</span><span class="p">,</span> <span class="n">newl</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">md</span><span class="p">(</span><span class="s2">&quot;```xml</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">xmlstr</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">xmlstr</span> <span class="o">=</span> <span class="n">minidom</span><span class="o">.</span><span class="n">parseString</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="s1">'   '</span><span class="p">,</span> <span class="n">newl</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span>
+<span class="n">md</span><span class="p">(</span><span class="s2">"```xml</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">xmlstr</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -538,7 +538,7 @@ parameters with proper values.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">request_url</span> <span class="o">=</span> <span class="n">get_api_request</span><span class="p">(</span><span class="n">collection_template</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;geo:uid&#39;</span><span class="p">:</span> <span class="s1">&#39;C1235542031-USGS_LTA&#39;</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">request_url</span> <span class="o">=</span> <span class="n">get_api_request</span><span class="p">(</span><span class="n">collection_template</span><span class="p">,</span> <span class="p">{</span><span class="s1">'count'</span><span class="p">:</span> <span class="s1">'10'</span><span class="p">,</span> <span class="s1">'geo:uid'</span><span class="p">:</span> <span class="s1">'C1235542031-USGS_LTA'</span><span class="p">})</span>
 <span class="n">request_url</span>
 </pre></div>
 </div>
@@ -547,8 +547,8 @@ parameters with proper values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="n">request_url</span> <span class="p">)</span>
-<span class="n">xmlstr</span> <span class="o">=</span> <span class="n">minidom</span><span class="o">.</span><span class="n">parseString</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="s1">&#39;   &#39;</span><span class="p">,</span> <span class="n">newl</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">md</span><span class="p">(</span><span class="s2">&quot;```xml</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">xmlstr</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">xmlstr</span> <span class="o">=</span> <span class="n">minidom</span><span class="o">.</span><span class="n">parseString</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">toprettyxml</span><span class="p">(</span><span class="n">indent</span><span class="o">=</span><span class="s1">'   '</span><span class="p">,</span> <span class="n">newl</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span>
+<span class="n">md</span><span class="p">(</span><span class="s2">"```xml</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">xmlstr</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -558,9 +558,9 @@ parameters with proper values.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">root</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 <span class="c1"># Extract &lt;link&gt; element with the OSDD for the granule search with Atom response</span>
-<span class="n">el</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;{http://www.w3.org/2005/Atom}entry/{http://www.w3.org/2005/Atom}link[@rel=&quot;search&quot;][@type=&quot;application/opensearchdescription+xml&quot;]&#39;</span><span class="p">)</span>
-<span class="n">xmltxt</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">)</span>
-<span class="n">md</span><span class="p">(</span><span class="s2">&quot;```xml</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">xmltxt</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">el</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'{http://www.w3.org/2005/Atom}entry/{http://www.w3.org/2005/Atom}link[@rel="search"][@type="application/opensearchdescription+xml"]'</span><span class="p">)</span>
+<span class="n">xmltxt</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">'unicode'</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'xml'</span><span class="p">)</span>
+<span class="n">md</span><span class="p">(</span><span class="s2">"```xml</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">xmltxt</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -568,8 +568,8 @@ parameters with proper values.</p>
 <p>Extract the URL of the OSDD endpoint from the <code class="docutils literal notranslate"><span class="pre">&lt;link&gt;</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url_osdd</span> <span class="o">=</span> <span class="n">el</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
-<span class="n">el</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url_osdd</span> <span class="o">=</span> <span class="n">el</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'href'</span><span class="p">]</span>
+<span class="n">el</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">'href'</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -706,7 +706,7 @@ By CEOS WGISS DAIG
 
   <p class="copyright">
     
-      © Copyright 2024.
+      © Copyright 2026.
       <br/>
     
   </p>

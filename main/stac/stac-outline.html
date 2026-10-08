@@ -490,7 +490,7 @@
 <p>We assume that Data providers have registered the metadata of their archived collections into the IDN or have made their collections accessible to FedEO. The client can query the IDN or FedEO to retrieve the collection ID for a desired collection of interest and, based on that collection ID and other spatial-temporal query conditions, build a valid CEOS STAC query. The following steps describe the client search scenario starting with a STAC Collection search.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">URL_LANDING_PAGE</span> <span class="o">=</span>  <span class="s1">&#39;https://fedeo.ceos.org/&#39;</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">URL_LANDING_PAGE</span> <span class="o">=</span>  <span class="s1">'https://fedeo.ceos.org/'</span> 
 </pre></div>
 </div>
 </div>
@@ -509,14 +509,14 @@ The code below extracts this link from the FedEO landing page.</p>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-<span class="n">expression</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">&quot;$.links[?(@.rel == &#39;data&#39;)].href&quot;</span><span class="p">)</span>
+<span class="n">expression</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">"$.links[?(@.rel == 'data')].href"</span><span class="p">)</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">expression</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://fedeo.ceos.org/collections&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'https://fedeo.ceos.org/collections'
 </pre></div>
 </div>
 </div>
@@ -536,14 +536,14 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">jsonpath_ng.ext</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse</span>
 
-<span class="n">expression</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">&quot;$.links[?(@.rel == &#39;http://www.opengis.net/def/rel/ogc/1.0/queryables&#39;)].href&quot;</span><span class="p">)</span>
+<span class="n">expression</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">"$.links[?(@.rel == 'http://www.opengis.net/def/rel/ogc/1.0/queryables')].href"</span><span class="p">)</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">expression</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://fedeo.ceos.org/collections/queryables&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'https://fedeo.ceos.org/collections/queryables'
 </pre></div>
 </div>
 </div>
@@ -553,10 +553,10 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get queryables response and list parameters alphabetically.</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>    
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">,</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">][</span><span class="s1">&#39;format&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;format&#39;</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;-&#39;</span> <span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'properties'</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'key'</span><span class="p">,</span><span class="s1">'value'</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'value'</span><span class="p">][</span><span class="s1">'type'</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'format'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'value'</span><span class="p">][</span><span class="s1">'format'</span><span class="p">]</span> <span class="k">if</span> <span class="s1">'format'</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span> <span class="k">else</span> <span class="s1">'-'</span> <span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'key'</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -690,7 +690,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="n">api</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span>
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">collection_search</span><span class="p">(</span>
-    <span class="n">q</span> <span class="o">=</span> <span class="s1">&#39;Proba-1&#39;</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="s1">'Proba-1'</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -699,7 +699,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>-G<span class="w"> </span>https://fedeo.ceos.org/collections<span class="w"> </span><span class="se">\</span>
-<span class="w">	</span>--data-urlencode<span class="w"> </span><span class="s2">&quot;q=Proba-1&quot;</span>
+<span class="w">	</span>--data-urlencode<span class="w"> </span><span class="s2">"q=Proba-1"</span>
 </pre></div>
 </div>
 </div>
@@ -707,8 +707,8 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">collection_list_as_dict</span><span class="p">()</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">record_path</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;collections&#39;</span><span class="p">])</span>
-<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;keywords&#39;</span><span class="p">]]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">record_path</span><span class="o">=</span><span class="p">[</span><span class="s1">'collections'</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'keywords'</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -759,18 +759,18 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">jsonpath_ng.ext</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse</span>
 
-<span class="c1"># find the link with rel=&quot;search&quot; and method=&quot;GET&quot;</span>
+<span class="c1"># find the link with rel="search" and method="GET"</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-<span class="n">expression</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">&quot;$.links[?(@.method == &#39;GET&#39; &amp; @.rel == &#39;search&#39; )].href&quot;</span><span class="p">)</span>
+<span class="n">expression</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">"$.links[?(@.method == 'GET' &amp; @.rel == 'search' )].href"</span><span class="p">)</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">expression</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://fedeo.ceos.org/search&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'https://fedeo.ceos.org/search'
 </pre></div>
 </div>
 </div>
@@ -783,7 +783,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">URL</span> <span class="o">=</span> <span class="n">URL_LANDING_PAGE</span> <span class="o">+</span> <span class="s1">&#39;collections/&#39;</span> <span class="o">+</span> <span class="n">COLLECTION_ID1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">URL</span> <span class="o">=</span> <span class="n">URL_LANDING_PAGE</span> <span class="o">+</span> <span class="s1">'collections/'</span> <span class="o">+</span> <span class="n">COLLECTION_ID1</span>
 </pre></div>
 </div>
 </div>
@@ -797,7 +797,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items?httpAccept=application/geo%2Bjson;profile=https://stacspec.org&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items?httpAccept=application/geo%2Bjson;profile=https://stacspec.org'
 </pre></div>
 </div>
 </div>
@@ -812,11 +812,11 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="n">api</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span> 
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>         
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">'GET'</span><span class="p">,</span>         
     <span class="n">max_items</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
     <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="n">COLLECTION_ID1</span><span class="p">],</span>
     <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span><span class="mf">14.90</span><span class="p">,</span> <span class="mf">37.700</span><span class="p">,</span> <span class="mf">14.99</span><span class="p">,</span> <span class="mf">37.780</span><span class="p">],</span> <span class="c1"># Mount Etna</span>
-    <span class="n">datetime</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;2015-01-01T00:00:00Z&#39;</span><span class="p">,</span> <span class="s1">&#39;2022-01-02T00:00:00Z&#39;</span><span class="p">]</span>
+    <span class="n">datetime</span><span class="o">=</span><span class="p">[</span><span class="s1">'2015-01-01T00:00:00Z'</span><span class="p">,</span> <span class="s1">'2022-01-02T00:00:00Z'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -825,16 +825,16 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>-G<span class="w"> </span>https://fedeo.ceos.org/search<span class="w"> </span><span class="se">\</span>
-<span class="w">	</span>--data-urlencode<span class="w"> </span><span class="s2">&quot;bbox=14.9,37.7,14.99,37.78&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">	</span>--data-urlencode<span class="w"> </span><span class="s2">&quot;datetime=2015-01-01T00:00:00Z/2022-01-02T00:00:00Z&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">	</span>--data-urlencode<span class="w"> </span><span class="s2">&quot;collections=PROBA.CHRIS.1A&quot;</span>
+<span class="w">	</span>--data-urlencode<span class="w"> </span><span class="s2">"bbox=14.9,37.7,14.99,37.78"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>--data-urlencode<span class="w"> </span><span class="s2">"datetime=2015-01-01T00:00:00Z/2022-01-02T00:00:00Z"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>--data-urlencode<span class="w"> </span><span class="s2">"collections=PROBA.CHRIS.1A"</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -849,7 +849,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show search response (GeoJSON)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">item_collection_as_dict</span><span class="p">()</span>
 <span class="n">jstr</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">md</span><span class="p">(</span><span class="s2">&quot;```json</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">jstr</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">md</span><span class="p">(</span><span class="s2">"```json</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">jstr</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -863,14 +863,14 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract the queryables endpoint</span>
 
-<span class="n">expression</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">&quot;$.links[?(@.rel == &#39;http://www.opengis.net/def/rel/ogc/1.0/queryables&#39; )].href&quot;</span><span class="p">)</span>
+<span class="n">expression</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">"$.links[?(@.rel == 'http://www.opengis.net/def/rel/ogc/1.0/queryables' )].href"</span><span class="p">)</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">expression</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">data_collections</span><span class="p">)</span>
 <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/queryables&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/queryables'
 </pre></div>
 </div>
 </div>
@@ -880,10 +880,10 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>   
 <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>    
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">,</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">][</span><span class="s1">&#39;format&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;format&#39;</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;-&#39;</span> <span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'properties'</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'key'</span><span class="p">,</span><span class="s1">'value'</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'value'</span><span class="p">][</span><span class="s1">'type'</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'format'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'value'</span><span class="p">][</span><span class="s1">'format'</span><span class="p">]</span> <span class="k">if</span> <span class="s1">'format'</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span> <span class="k">else</span> <span class="s1">'-'</span> <span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'key'</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1015,7 +1015,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1032,241 +1032,241 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;type&#39;: &#39;FeatureCollection&#39;,
- &#39;features&#39;: [{&#39;stac_version&#39;: &#39;1.0.0&#39;,
-   &#39;assets&#39;: {&#39;thumbnail&#39;: {&#39;roles&#39;: [&#39;thumbnail&#39;],
-     &#39;href&#39;: &#39;http://tpm-ds.eo.esa.int/oads/meta/PROBA1-CHRIS/thumbnail/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001.SIP.ZIP_TIMG.jpg&#39;,
-     &#39;type&#39;: &#39;image/jpeg&#39;,
-     &#39;title&#39;: &#39;THUMBNAIL&#39;},
-    &#39;enclosure&#39;: {&#39;roles&#39;: [&#39;data&#39;],
-     &#39;href&#39;: &#39;https://tpm-ds.eo.esa.int/oads/data/PROBA1-CHRIS/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001.SIP.ZIP&#39;,
-     &#39;type&#39;: &#39;application/zip&#39;,
-     &#39;title&#39;: &#39;Download&#39;,
-     &#39;file:size&#39;: 257077674},
-    &#39;metadata_ogc_10_157r4&#39;: {&#39;roles&#39;: [&#39;metadata&#39;],
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/gml%2Bxml&amp;recordSchema=om&#39;,
-     &#39;title&#39;: &#39;OGC 10-157r4 metadata&#39;,
-     &#39;type&#39;: &#39;application/gml+xml;profile=&quot;http://www.opengis.net/spec/EOMPOM/1.1&quot;&#39;},
-    &#39;metadata_ogc_17_069r3&#39;: {&#39;roles&#39;: [&#39;metadata&#39;],
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001&#39;,
-     &#39;title&#39;: &#39;OGC 17-069r3 metadata&#39;,
-     &#39;type&#39;: &#39;application/geo+json;profile=&quot;http://www.opengis.net/spec/ogcapi-features-1/1.0&quot;&#39;},
-    &#39;metadata_ogc_17_003r2&#39;: {&#39;roles&#39;: [&#39;metadata&#39;],
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?mode=owc&#39;,
-     &#39;title&#39;: &#39;OGC 17-003r2 metadata&#39;,
-     &#39;type&#39;: &#39;application/geo+json;profile=&quot;http://www.opengis.net/spec/eo-geojson/1.0&quot;&#39;},
-    &#39;metadata_iso_19139&#39;: {&#39;roles&#39;: [&#39;metadata&#39;],
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/vnd.iso.19139%2Bxml&#39;,
-     &#39;title&#39;: &#39;ISO 19139 metadata&#39;,
-     &#39;type&#39;: &#39;application/vnd.iso.19139+xml&#39;},
-    &#39;metadata_html&#39;: {&#39;roles&#39;: [&#39;metadata&#39;],
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=text/html&#39;,
-     &#39;title&#39;: &#39;HTML&#39;,
-     &#39;type&#39;: &#39;text/html&#39;},
-    &#39;quicklook&#39;: {&#39;roles&#39;: [&#39;overview&#39;],
-     &#39;href&#39;: &#39;http://tpm-ds.eo.esa.int/oads/meta/PROBA1-CHRIS/browse/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001.SIP.ZIP_BID.PNG&#39;,
-     &#39;type&#39;: &#39;image/png&#39;,
-     &#39;title&#39;: &#39;QUICKLOOK&#39;}},
-   &#39;bbox&#39;: [14.94, 37.69, 15.09, 37.79],
-   &#39;geometry&#39;: {&#39;coordinates&#39;: [[[15.08, 37.71],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'type': 'FeatureCollection',
+ 'features': [{'stac_version': '1.0.0',
+   'assets': {'thumbnail': {'roles': ['thumbnail'],
+     'href': 'http://tpm-ds.eo.esa.int/oads/meta/PROBA1-CHRIS/thumbnail/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001.SIP.ZIP_TIMG.jpg',
+     'type': 'image/jpeg',
+     'title': 'THUMBNAIL'},
+    'enclosure': {'roles': ['data'],
+     'href': 'https://tpm-ds.eo.esa.int/oads/data/PROBA1-CHRIS/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001.SIP.ZIP',
+     'type': 'application/zip',
+     'title': 'Download',
+     'file:size': 257077674},
+    'metadata_ogc_10_157r4': {'roles': ['metadata'],
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/gml%2Bxml&amp;recordSchema=om',
+     'title': 'OGC 10-157r4 metadata',
+     'type': 'application/gml+xml;profile="http://www.opengis.net/spec/EOMPOM/1.1"'},
+    'metadata_ogc_17_069r3': {'roles': ['metadata'],
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001',
+     'title': 'OGC 17-069r3 metadata',
+     'type': 'application/geo+json;profile="http://www.opengis.net/spec/ogcapi-features-1/1.0"'},
+    'metadata_ogc_17_003r2': {'roles': ['metadata'],
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?mode=owc',
+     'title': 'OGC 17-003r2 metadata',
+     'type': 'application/geo+json;profile="http://www.opengis.net/spec/eo-geojson/1.0"'},
+    'metadata_iso_19139': {'roles': ['metadata'],
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/vnd.iso.19139%2Bxml',
+     'title': 'ISO 19139 metadata',
+     'type': 'application/vnd.iso.19139+xml'},
+    'metadata_html': {'roles': ['metadata'],
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=text/html',
+     'title': 'HTML',
+     'type': 'text/html'},
+    'quicklook': {'roles': ['overview'],
+     'href': 'http://tpm-ds.eo.esa.int/oads/meta/PROBA1-CHRIS/browse/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001.SIP.ZIP_BID.PNG',
+     'type': 'image/png',
+     'title': 'QUICKLOOK'}},
+   'bbox': [14.94, 37.69, 15.09, 37.79],
+   'geometry': {'coordinates': [[[15.08, 37.71],
       [15.09, 37.77],
       [14.94, 37.79],
       [14.96, 37.69],
       [15.08, 37.71]]],
-    &#39;type&#39;: &#39;Polygon&#39;},
-   &#39;links&#39;: [{&#39;rel&#39;: &#39;self&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/geo%2Bjson;profile=https://stacspec.org&#39;,
-     &#39;type&#39;: &#39;application/geo+json;profile=&quot;https://stacspec.org&quot;&#39;},
-    {&#39;rel&#39;: &#39;collection&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A?httpAccept=application/json&#39;,
-     &#39;type&#39;: &#39;application/json&#39;,
-     &#39;title&#39;: &#39;PROBA.CHRIS.1A&#39;},
-    {&#39;rel&#39;: &#39;parent&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A?httpAccept=application/json&#39;,
-     &#39;type&#39;: &#39;application/json&#39;,
-     &#39;title&#39;: &#39;PROBA.CHRIS.1A&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/atom%2Bxml&#39;,
-     &#39;type&#39;: &#39;application/atom+xml&#39;,
-     &#39;title&#39;: &#39;Atom format&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/ld%2Bjson&#39;,
-     &#39;type&#39;: &#39;application/ld+json&#39;,
-     &#39;title&#39;: &#39;JSON-LD metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/ld%2Bjson;profile=https://schema.org&#39;,
-     &#39;type&#39;: &#39;application/ld+json;profile=&quot;https://schema.org&quot;&#39;,
-     &#39;title&#39;: &#39;JSON-LD (schema.org) metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/&#39;,
-     &#39;type&#39;: &#39;application/ld+json;profile=&quot;http://data.europa.eu/930/&quot;&#39;,
-     &#39;title&#39;: &#39;JSON-LD (GeoDCAT-AP) metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/rdf%2Bxml&#39;,
-     &#39;type&#39;: &#39;application/rdf+xml&#39;,
-     &#39;title&#39;: &#39;RDF/XML metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/rdf%2Bxml;profile=https://schema.org&#39;,
-     &#39;type&#39;: &#39;application/rdf+xml;profile=&quot;https://schema.org&quot;&#39;,
-     &#39;title&#39;: &#39;RDF/XML (schema.org) metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/&#39;,
-     &#39;type&#39;: &#39;application/rdf+xml;profile=&quot;http://data.europa.eu/930/&quot;&#39;,
-     &#39;title&#39;: &#39;RDF/XML (GeoDCAT-AP) metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=text/turtle&#39;,
-     &#39;type&#39;: &#39;text/turtle&#39;,
-     &#39;title&#39;: &#39;Turtle metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=text/turtle;profile=https://schema.org&#39;,
-     &#39;type&#39;: &#39;text/turtle;profile=&quot;https://schema.org&quot;&#39;,
-     &#39;title&#39;: &#39;Turtle (schema.org) metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=text/turtle;profile=http://data.europa.eu/930/&#39;,
-     &#39;type&#39;: &#39;text/turtle;profile=&quot;http://data.europa.eu/930/&quot;&#39;,
-     &#39;title&#39;: &#39;Turtle (GeoDCAT-AP) metadata&#39;}],
-   &#39;id&#39;: &#39;PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001&#39;,
-   &#39;collection&#39;: &#39;PROBA.CHRIS.1A&#39;,
-   &#39;type&#39;: &#39;Feature&#39;,
-   &#39;stac_extensions&#39;: [&#39;https://stac-extensions.github.io/file/v2.1.0/schema.json&#39;,
-    &#39;https://stac-extensions.github.io/projection/v1.1.0/schema.json&#39;,
-    &#39;https://stac-extensions.github.io/view/v1.0.0/schema.json&#39;,
-    &#39;https://stac-extensions.github.io/grid/v1.1.0/schema.json&#39;,
-    &#39;https://stac-extensions.github.io/product/v1.0.0/schema.json&#39;,
-    &#39;https://stac-extensions.github.io/timestamps/v1.1.0/schema.json&#39;],
-   &#39;properties&#39;: {&#39;grid:code&#39;: &#39;WRS-E015-N37&#39;,
-    &#39;proj:code&#39;: &#39;EPSG:4326&#39;,
-    &#39;time:published&#39;: &#39;2017-04-19T13:02:00Z&#39;,
-    &#39;start_datetime&#39;: &#39;2017-04-19T13:58:00Z&#39;,
-    &#39;end_datetime&#39;: &#39;2017-04-19T13:02:00Z&#39;,
-    &#39;view:sun_azimuth&#39;: 18.74868429130781,
-    &#39;product:type&#39;: &#39;CHR_MO1_1P&#39;,
-    &#39;title&#39;: &#39;PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001&#39;,
-    &#39;platform&#39;: &#39;PROBA-1&#39;,
-    &#39;view:sun_elevation&#39;: 48.013,
-    &#39;datetime&#39;: &#39;2017-04-19T13:58:00Z&#39;,
-    &#39;sar:instrument_mode&#39;: &#39;MODE-1&#39;,
-    &#39;instruments&#39;: [&#39;CHRIS&#39;],
-    &#39;constellation&#39;: &#39;PROBA&#39;,
-    &#39;updated&#39;: &#39;2026-05-29T18:11:02Z&#39;,
-    &#39;product:acquisition_type&#39;: &#39;nominal&#39;}},
-  {&#39;stac_version&#39;: &#39;1.0.0&#39;,
-   &#39;assets&#39;: {&#39;thumbnail&#39;: {&#39;roles&#39;: [&#39;thumbnail&#39;],
-     &#39;href&#39;: &#39;http://tpm-ds.eo.esa.int/oads/meta/PROBA1-CHRIS/thumbnail/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001.SIP.ZIP_TIMG.jpg&#39;,
-     &#39;type&#39;: &#39;image/jpeg&#39;,
-     &#39;title&#39;: &#39;THUMBNAIL&#39;},
-    &#39;enclosure&#39;: {&#39;roles&#39;: [&#39;data&#39;],
-     &#39;href&#39;: &#39;https://tpm-ds.eo.esa.int/oads/data/PROBA1-CHRIS/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001.SIP.ZIP&#39;,
-     &#39;type&#39;: &#39;application/zip&#39;,
-     &#39;title&#39;: &#39;Download&#39;,
-     &#39;file:size&#39;: 259100438},
-    &#39;metadata_ogc_10_157r4&#39;: {&#39;roles&#39;: [&#39;metadata&#39;],
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/gml%2Bxml&amp;recordSchema=om&#39;,
-     &#39;title&#39;: &#39;OGC 10-157r4 metadata&#39;,
-     &#39;type&#39;: &#39;application/gml+xml;profile=&quot;http://www.opengis.net/spec/EOMPOM/1.1&quot;&#39;},
-    &#39;metadata_ogc_17_069r3&#39;: {&#39;roles&#39;: [&#39;metadata&#39;],
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001&#39;,
-     &#39;title&#39;: &#39;OGC 17-069r3 metadata&#39;,
-     &#39;type&#39;: &#39;application/geo+json;profile=&quot;http://www.opengis.net/spec/ogcapi-features-1/1.0&quot;&#39;},
-    &#39;metadata_ogc_17_003r2&#39;: {&#39;roles&#39;: [&#39;metadata&#39;],
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?mode=owc&#39;,
-     &#39;title&#39;: &#39;OGC 17-003r2 metadata&#39;,
-     &#39;type&#39;: &#39;application/geo+json;profile=&quot;http://www.opengis.net/spec/eo-geojson/1.0&quot;&#39;},
-    &#39;metadata_iso_19139&#39;: {&#39;roles&#39;: [&#39;metadata&#39;],
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/vnd.iso.19139%2Bxml&#39;,
-     &#39;title&#39;: &#39;ISO 19139 metadata&#39;,
-     &#39;type&#39;: &#39;application/vnd.iso.19139+xml&#39;},
-    &#39;metadata_html&#39;: {&#39;roles&#39;: [&#39;metadata&#39;],
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=text/html&#39;,
-     &#39;title&#39;: &#39;HTML&#39;,
-     &#39;type&#39;: &#39;text/html&#39;},
-    &#39;quicklook&#39;: {&#39;roles&#39;: [&#39;overview&#39;],
-     &#39;href&#39;: &#39;http://tpm-ds.eo.esa.int/oads/meta/PROBA1-CHRIS/browse/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001.SIP.ZIP_BID.PNG&#39;,
-     &#39;type&#39;: &#39;image/png&#39;,
-     &#39;title&#39;: &#39;QUICKLOOK&#39;}},
-   &#39;bbox&#39;: [14.94, 37.69, 15.09, 37.79],
-   &#39;geometry&#39;: {&#39;coordinates&#39;: [[[15.08, 37.71],
+    'type': 'Polygon'},
+   'links': [{'rel': 'self',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/geo%2Bjson;profile=https://stacspec.org',
+     'type': 'application/geo+json;profile="https://stacspec.org"'},
+    {'rel': 'collection',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A?httpAccept=application/json',
+     'type': 'application/json',
+     'title': 'PROBA.CHRIS.1A'},
+    {'rel': 'parent',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A?httpAccept=application/json',
+     'type': 'application/json',
+     'title': 'PROBA.CHRIS.1A'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/atom%2Bxml',
+     'type': 'application/atom+xml',
+     'title': 'Atom format'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/ld%2Bjson',
+     'type': 'application/ld+json',
+     'title': 'JSON-LD metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/ld%2Bjson;profile=https://schema.org',
+     'type': 'application/ld+json;profile="https://schema.org"',
+     'title': 'JSON-LD (schema.org) metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/',
+     'type': 'application/ld+json;profile="http://data.europa.eu/930/"',
+     'title': 'JSON-LD (GeoDCAT-AP) metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/rdf%2Bxml',
+     'type': 'application/rdf+xml',
+     'title': 'RDF/XML metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/rdf%2Bxml;profile=https://schema.org',
+     'type': 'application/rdf+xml;profile="https://schema.org"',
+     'title': 'RDF/XML (schema.org) metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/',
+     'type': 'application/rdf+xml;profile="http://data.europa.eu/930/"',
+     'title': 'RDF/XML (GeoDCAT-AP) metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=text/turtle',
+     'type': 'text/turtle',
+     'title': 'Turtle metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=text/turtle;profile=https://schema.org',
+     'type': 'text/turtle;profile="https://schema.org"',
+     'title': 'Turtle (schema.org) metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001?httpAccept=text/turtle;profile=http://data.europa.eu/930/',
+     'type': 'text/turtle;profile="http://data.europa.eu/930/"',
+     'title': 'Turtle (GeoDCAT-AP) metadata'}],
+   'id': 'PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001',
+   'collection': 'PROBA.CHRIS.1A',
+   'type': 'Feature',
+   'stac_extensions': ['https://stac-extensions.github.io/file/v2.1.0/schema.json',
+    'https://stac-extensions.github.io/projection/v1.1.0/schema.json',
+    'https://stac-extensions.github.io/view/v1.0.0/schema.json',
+    'https://stac-extensions.github.io/grid/v1.1.0/schema.json',
+    'https://stac-extensions.github.io/product/v1.0.0/schema.json',
+    'https://stac-extensions.github.io/timestamps/v1.1.0/schema.json'],
+   'properties': {'grid:code': 'WRS-E015-N37',
+    'proj:code': 'EPSG:4326',
+    'time:published': '2017-04-19T13:02:00Z',
+    'start_datetime': '2017-04-19T13:58:00Z',
+    'end_datetime': '2017-04-19T13:02:00Z',
+    'view:sun_azimuth': 18.74868429130781,
+    'product:type': 'CHR_MO1_1P',
+    'title': 'PR1_OPER_CHR_MO1_1P_20170419T135800_N37-075_E015-001_0001',
+    'platform': 'PROBA-1',
+    'view:sun_elevation': 48.013,
+    'datetime': '2017-04-19T13:58:00Z',
+    'sar:instrument_mode': 'MODE-1',
+    'instruments': ['CHRIS'],
+    'constellation': 'PROBA',
+    'updated': '2026-05-29T18:11:02Z',
+    'product:acquisition_type': 'nominal'}},
+  {'stac_version': '1.0.0',
+   'assets': {'thumbnail': {'roles': ['thumbnail'],
+     'href': 'http://tpm-ds.eo.esa.int/oads/meta/PROBA1-CHRIS/thumbnail/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001.SIP.ZIP_TIMG.jpg',
+     'type': 'image/jpeg',
+     'title': 'THUMBNAIL'},
+    'enclosure': {'roles': ['data'],
+     'href': 'https://tpm-ds.eo.esa.int/oads/data/PROBA1-CHRIS/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001.SIP.ZIP',
+     'type': 'application/zip',
+     'title': 'Download',
+     'file:size': 259100438},
+    'metadata_ogc_10_157r4': {'roles': ['metadata'],
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/gml%2Bxml&amp;recordSchema=om',
+     'title': 'OGC 10-157r4 metadata',
+     'type': 'application/gml+xml;profile="http://www.opengis.net/spec/EOMPOM/1.1"'},
+    'metadata_ogc_17_069r3': {'roles': ['metadata'],
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001',
+     'title': 'OGC 17-069r3 metadata',
+     'type': 'application/geo+json;profile="http://www.opengis.net/spec/ogcapi-features-1/1.0"'},
+    'metadata_ogc_17_003r2': {'roles': ['metadata'],
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?mode=owc',
+     'title': 'OGC 17-003r2 metadata',
+     'type': 'application/geo+json;profile="http://www.opengis.net/spec/eo-geojson/1.0"'},
+    'metadata_iso_19139': {'roles': ['metadata'],
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/vnd.iso.19139%2Bxml',
+     'title': 'ISO 19139 metadata',
+     'type': 'application/vnd.iso.19139+xml'},
+    'metadata_html': {'roles': ['metadata'],
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=text/html',
+     'title': 'HTML',
+     'type': 'text/html'},
+    'quicklook': {'roles': ['overview'],
+     'href': 'http://tpm-ds.eo.esa.int/oads/meta/PROBA1-CHRIS/browse/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001.SIP.ZIP_BID.PNG',
+     'type': 'image/png',
+     'title': 'QUICKLOOK'}},
+   'bbox': [14.94, 37.69, 15.09, 37.79],
+   'geometry': {'coordinates': [[[15.08, 37.71],
       [15.09, 37.77],
       [14.94, 37.79],
       [14.96, 37.69],
       [15.08, 37.71]]],
-    &#39;type&#39;: &#39;Polygon&#39;},
-   &#39;links&#39;: [{&#39;rel&#39;: &#39;self&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/geo%2Bjson;profile=https://stacspec.org&#39;,
-     &#39;type&#39;: &#39;application/geo+json;profile=&quot;https://stacspec.org&quot;&#39;},
-    {&#39;rel&#39;: &#39;collection&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A?httpAccept=application/json&#39;,
-     &#39;type&#39;: &#39;application/json&#39;,
-     &#39;title&#39;: &#39;PROBA.CHRIS.1A&#39;},
-    {&#39;rel&#39;: &#39;parent&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A?httpAccept=application/json&#39;,
-     &#39;type&#39;: &#39;application/json&#39;,
-     &#39;title&#39;: &#39;PROBA.CHRIS.1A&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/atom%2Bxml&#39;,
-     &#39;type&#39;: &#39;application/atom+xml&#39;,
-     &#39;title&#39;: &#39;Atom format&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/ld%2Bjson&#39;,
-     &#39;type&#39;: &#39;application/ld+json&#39;,
-     &#39;title&#39;: &#39;JSON-LD metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/ld%2Bjson;profile=https://schema.org&#39;,
-     &#39;type&#39;: &#39;application/ld+json;profile=&quot;https://schema.org&quot;&#39;,
-     &#39;title&#39;: &#39;JSON-LD (schema.org) metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/&#39;,
-     &#39;type&#39;: &#39;application/ld+json;profile=&quot;http://data.europa.eu/930/&quot;&#39;,
-     &#39;title&#39;: &#39;JSON-LD (GeoDCAT-AP) metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/rdf%2Bxml&#39;,
-     &#39;type&#39;: &#39;application/rdf+xml&#39;,
-     &#39;title&#39;: &#39;RDF/XML metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/rdf%2Bxml;profile=https://schema.org&#39;,
-     &#39;type&#39;: &#39;application/rdf+xml;profile=&quot;https://schema.org&quot;&#39;,
-     &#39;title&#39;: &#39;RDF/XML (schema.org) metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/&#39;,
-     &#39;type&#39;: &#39;application/rdf+xml;profile=&quot;http://data.europa.eu/930/&quot;&#39;,
-     &#39;title&#39;: &#39;RDF/XML (GeoDCAT-AP) metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=text/turtle&#39;,
-     &#39;type&#39;: &#39;text/turtle&#39;,
-     &#39;title&#39;: &#39;Turtle metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=text/turtle;profile=https://schema.org&#39;,
-     &#39;type&#39;: &#39;text/turtle;profile=&quot;https://schema.org&quot;&#39;,
-     &#39;title&#39;: &#39;Turtle (schema.org) metadata&#39;},
-    {&#39;rel&#39;: &#39;alternate&#39;,
-     &#39;href&#39;: &#39;https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=text/turtle;profile=http://data.europa.eu/930/&#39;,
-     &#39;type&#39;: &#39;text/turtle;profile=&quot;http://data.europa.eu/930/&quot;&#39;,
-     &#39;title&#39;: &#39;Turtle (GeoDCAT-AP) metadata&#39;}],
-   &#39;id&#39;: &#39;PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001&#39;,
-   &#39;collection&#39;: &#39;PROBA.CHRIS.1A&#39;,
-   &#39;type&#39;: &#39;Feature&#39;,
-   &#39;stac_extensions&#39;: [&#39;https://stac-extensions.github.io/file/v2.1.0/schema.json&#39;,
-    &#39;https://stac-extensions.github.io/projection/v1.1.0/schema.json&#39;,
-    &#39;https://stac-extensions.github.io/view/v1.0.0/schema.json&#39;,
-    &#39;https://stac-extensions.github.io/grid/v1.1.0/schema.json&#39;,
-    &#39;https://stac-extensions.github.io/product/v1.0.0/schema.json&#39;,
-    &#39;https://stac-extensions.github.io/timestamps/v1.1.0/schema.json&#39;],
-   &#39;properties&#39;: {&#39;grid:code&#39;: &#39;WRS-E015-N37&#39;,
-    &#39;proj:code&#39;: &#39;EPSG:4326&#39;,
-    &#39;time:published&#39;: &#39;2016-04-13T14:48:00Z&#39;,
-    &#39;start_datetime&#39;: &#39;2016-04-13T14:44:00Z&#39;,
-    &#39;end_datetime&#39;: &#39;2016-04-13T14:48:00Z&#39;,
-    &#39;view:sun_azimuth&#39;: 32.76774763398471,
-    &#39;product:type&#39;: &#39;CHR_MO1_1P&#39;,
-    &#39;title&#39;: &#39;PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001&#39;,
-    &#39;platform&#39;: &#39;PROBA-1&#39;,
-    &#39;view:sun_elevation&#39;: 57.681,
-    &#39;datetime&#39;: &#39;2016-04-13T14:44:00Z&#39;,
-    &#39;sar:instrument_mode&#39;: &#39;MODE-1&#39;,
-    &#39;instruments&#39;: [&#39;CHRIS&#39;],
-    &#39;constellation&#39;: &#39;PROBA&#39;,
-    &#39;updated&#39;: &#39;2026-05-29T18:11:02Z&#39;,
-    &#39;product:acquisition_type&#39;: &#39;nominal&#39;}}]}
+    'type': 'Polygon'},
+   'links': [{'rel': 'self',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/geo%2Bjson;profile=https://stacspec.org',
+     'type': 'application/geo+json;profile="https://stacspec.org"'},
+    {'rel': 'collection',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A?httpAccept=application/json',
+     'type': 'application/json',
+     'title': 'PROBA.CHRIS.1A'},
+    {'rel': 'parent',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A?httpAccept=application/json',
+     'type': 'application/json',
+     'title': 'PROBA.CHRIS.1A'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/atom%2Bxml',
+     'type': 'application/atom+xml',
+     'title': 'Atom format'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/ld%2Bjson',
+     'type': 'application/ld+json',
+     'title': 'JSON-LD metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/ld%2Bjson;profile=https://schema.org',
+     'type': 'application/ld+json;profile="https://schema.org"',
+     'title': 'JSON-LD (schema.org) metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/ld%2Bjson;profile=http://data.europa.eu/930/',
+     'type': 'application/ld+json;profile="http://data.europa.eu/930/"',
+     'title': 'JSON-LD (GeoDCAT-AP) metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/rdf%2Bxml',
+     'type': 'application/rdf+xml',
+     'title': 'RDF/XML metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/rdf%2Bxml;profile=https://schema.org',
+     'type': 'application/rdf+xml;profile="https://schema.org"',
+     'title': 'RDF/XML (schema.org) metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=application/rdf%2Bxml;profile=http://data.europa.eu/930/',
+     'type': 'application/rdf+xml;profile="http://data.europa.eu/930/"',
+     'title': 'RDF/XML (GeoDCAT-AP) metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=text/turtle',
+     'type': 'text/turtle',
+     'title': 'Turtle metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=text/turtle;profile=https://schema.org',
+     'type': 'text/turtle;profile="https://schema.org"',
+     'title': 'Turtle (schema.org) metadata'},
+    {'rel': 'alternate',
+     'href': 'https://fedeo.ceos.org/collections/PROBA.CHRIS.1A/items/PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001?httpAccept=text/turtle;profile=http://data.europa.eu/930/',
+     'type': 'text/turtle;profile="http://data.europa.eu/930/"',
+     'title': 'Turtle (GeoDCAT-AP) metadata'}],
+   'id': 'PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001',
+   'collection': 'PROBA.CHRIS.1A',
+   'type': 'Feature',
+   'stac_extensions': ['https://stac-extensions.github.io/file/v2.1.0/schema.json',
+    'https://stac-extensions.github.io/projection/v1.1.0/schema.json',
+    'https://stac-extensions.github.io/view/v1.0.0/schema.json',
+    'https://stac-extensions.github.io/grid/v1.1.0/schema.json',
+    'https://stac-extensions.github.io/product/v1.0.0/schema.json',
+    'https://stac-extensions.github.io/timestamps/v1.1.0/schema.json'],
+   'properties': {'grid:code': 'WRS-E015-N37',
+    'proj:code': 'EPSG:4326',
+    'time:published': '2016-04-13T14:48:00Z',
+    'start_datetime': '2016-04-13T14:44:00Z',
+    'end_datetime': '2016-04-13T14:48:00Z',
+    'view:sun_azimuth': 32.76774763398471,
+    'product:type': 'CHR_MO1_1P',
+    'title': 'PR1_OPER_CHR_MO1_1P_20160413T144400_N37-075_E015-001_0001',
+    'platform': 'PROBA-1',
+    'view:sun_elevation': 57.681,
+    'datetime': '2016-04-13T14:44:00Z',
+    'sar:instrument_mode': 'MODE-1',
+    'instruments': ['CHRIS'],
+    'constellation': 'PROBA',
+    'updated': '2026-05-29T18:11:02Z',
+    'product:acquisition_type': 'nominal'}}]}
 </pre></div>
 </div>
 </div>
@@ -1289,12 +1289,12 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="n">api</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span> 
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>        
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">'POST'</span><span class="p">,</span>        
     <span class="n">max_items</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
     <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="n">COLLECTION_ID1</span><span class="p">],</span>
     <span class="c1"># intersects = json.dumps(aoi_as_dict), </span>
     <span class="n">intersects</span> <span class="o">=</span> <span class="n">aoi_as_dict</span><span class="p">,</span>
-    <span class="n">datetime</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;2015-01-01T00:00:00Z&#39;</span><span class="p">,</span> <span class="s1">&#39;2022-01-02T00:00:00Z&#39;</span><span class="p">]</span>
+    <span class="n">datetime</span><span class="o">=</span><span class="p">[</span><span class="s1">'2015-01-01T00:00:00Z'</span><span class="p">,</span> <span class="s1">'2022-01-02T00:00:00Z'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1304,7 +1304,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1322,11 +1322,11 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="n">api</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span> 
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>   
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">'GET'</span><span class="p">,</span>   
     <span class="n">max_items</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="n">COLLECTION_ID1</span><span class="p">],</span>
     <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span><span class="mf">14.90</span><span class="p">,</span> <span class="mf">37.700</span><span class="p">,</span> <span class="mf">14.99</span><span class="p">,</span> <span class="mf">37.780</span><span class="p">],</span> <span class="c1"># Mount Etna</span>
-    <span class="c1"># datetime=[&#39;2015-01-01T00:00:00Z&#39;, &#39;2022-01-02T00:00:00Z&#39;]</span>
+    <span class="c1"># datetime=['2015-01-01T00:00:00Z', '2022-01-02T00:00:00Z']</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1361,7 +1361,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="n">api</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span> 
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>   
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">'GET'</span><span class="p">,</span>   
     <span class="n">max_items</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="n">COLLECTION_ID1</span><span class="p">],</span>
     <span class="n">bbox</span> <span class="o">=</span> <span class="n">box</span>
@@ -1392,7 +1392,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="k">def</span><span class="w"> </span><span class="nf">get_results</span><span class="p">(</span><span class="n">bbox</span><span class="p">):</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">bbox</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-            <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>   
+            <span class="n">method</span> <span class="o">=</span> <span class="s1">'GET'</span><span class="p">,</span>   
             <span class="n">max_items</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
             <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">],</span> 
             <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="n">collection_id</span><span class="p">]</span>
@@ -1456,10 +1456,10 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="n">api</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span> 
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>   
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">'GET'</span><span class="p">,</span>   
     <span class="n">max_items</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
     <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="n">COLLECTION_ID1</span><span class="p">],</span>
-    <span class="n">datetime</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;2019-01-01T00:00:00Z&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-12-02T00:00:00Z&#39;</span><span class="p">]</span>
+    <span class="n">datetime</span><span class="o">=</span><span class="p">[</span><span class="s1">'2019-01-01T00:00:00Z'</span><span class="p">,</span> <span class="s1">'2019-12-02T00:00:00Z'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1484,10 +1484,10 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="n">api</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span> 
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>   
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">'GET'</span><span class="p">,</span>   
     <span class="n">max_items</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
     <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="n">COLLECTION_ID1</span><span class="p">],</span>
-    <span class="n">datetime</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;2021-12-01T00:00:00Z&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">datetime</span><span class="o">=</span><span class="p">[</span><span class="s1">'2021-12-01T00:00:00Z'</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1497,7 +1497,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1506,7 +1506,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_value_distribution</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="s1">&#39;sar:product_type&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_value_distribution</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="s1">'sar:product_type'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1531,7 +1531,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="n">api</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span> 
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>   
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">'GET'</span><span class="p">,</span>   
     <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="n">COLLECTION_ID1</span><span class="p">],</span>
     <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="n">granule_id1</span><span class="p">]</span>
 <span class="p">)</span>
@@ -1556,12 +1556,12 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="n">api</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span> 
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>   
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">'GET'</span><span class="p">,</span>   
     <span class="n">max_items</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="n">COLLECTION_ID1</span><span class="p">],</span>
     <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span><span class="mf">14.90</span><span class="p">,</span> <span class="mf">37.700</span><span class="p">,</span> <span class="mf">14.99</span><span class="p">,</span> <span class="mf">37.780</span><span class="p">],</span> <span class="c1"># Mount Etna</span>
-    <span class="n">datetime</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;2015-01-01T00:00:00Z&#39;</span><span class="p">,</span> <span class="s1">&#39;2022-01-02T00:00:00Z&#39;</span><span class="p">],</span>
-    <span class="nb">filter</span><span class="o">=</span><span class="s2">&quot;productType=&#39;CHR_MO2_1P&#39; and instrument=&#39;CHRIS&#39;&quot;</span>
+    <span class="n">datetime</span><span class="o">=</span><span class="p">[</span><span class="s1">'2015-01-01T00:00:00Z'</span><span class="p">,</span> <span class="s1">'2022-01-02T00:00:00Z'</span><span class="p">],</span>
+    <span class="nb">filter</span><span class="o">=</span><span class="s2">"productType='CHR_MO2_1P' and instrument='CHRIS'"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1580,7 +1580,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_value_distribution</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="s1">&#39;sar:product_type&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display_value_distribution</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="s1">'sar:product_type'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1598,10 +1598,10 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="n">api</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span>  
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>   
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">'GET'</span><span class="p">,</span>   
     <span class="n">max_items</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
     <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="n">COLLECTION_ID3_CLOUDS</span><span class="p">],</span>
-    <span class="nb">filter</span><span class="o">=</span><span class="s2">&quot;cloudCover &lt; 10&quot;</span>    
+    <span class="nb">filter</span><span class="o">=</span><span class="s2">"cloudCover &lt; 10"</span>    
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1617,9 +1617,9 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="n">stac_json</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">item_collection_as_dict</span><span class="p">()</span>
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_features</span><span class="p">(</span><span class="n">stac_json</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
-  <span class="n">_</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span><span class="s1">&#39;eo:cloud_cover&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+  <span class="n">_</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[[</span><span class="s1">'title'</span><span class="p">,</span><span class="s1">'eo:cloud_cover'</span><span class="p">]]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
 <span class="k">except</span><span class="p">:</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;eo:cloud_cover information is not available.&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">"eo:cloud_cover information is not available."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1628,10 +1628,10 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fails if properties are not in the metadata.</span>
 <span class="k">try</span><span class="p">:</span>
-  <span class="c1"># _ = gdf[[&#39;view:sun_elevation&#39;,&#39;view:incidence_angle&#39;,&#39;view:sun_azimuth&#39;]].plot.hist(alpha=0.7)</span>
-  <span class="n">_</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[[</span><span class="s1">&#39;view:sun_elevation&#39;</span><span class="p">,</span><span class="s1">&#39;view:sun_azimuth&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+  <span class="c1"># _ = gdf[['view:sun_elevation','view:incidence_angle','view:sun_azimuth']].plot.hist(alpha=0.7)</span>
+  <span class="n">_</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[[</span><span class="s1">'view:sun_elevation'</span><span class="p">,</span><span class="s1">'view:sun_azimuth'</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;acquisition angle information is not available.&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">"acquisition angle information is not available."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1645,8 +1645,8 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># display_value_distribution(results, &#39;sat:orbit_state&#39;)</span>
-<span class="n">display_value_distribution</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="s1">&#39;sar:product_type&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># display_value_distribution(results, 'sat:orbit_state')</span>
+<span class="n">display_value_distribution</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="s1">'sar:product_type'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1664,7 +1664,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="n">api</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span> 
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>   
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">'GET'</span><span class="p">,</span>   
     <span class="n">max_items</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
     <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="n">COLLECTION_ID2_CLOUDS</span><span class="p">,</span> <span class="n">COLLECTION_ID1</span><span class="p">],</span>
     <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span><span class="mf">13.90</span><span class="p">,</span> <span class="mf">36.700</span><span class="p">,</span> <span class="mf">15.99</span><span class="p">,</span> <span class="mf">38.780</span><span class="p">],</span> <span class="c1"># Mount Etna (large)</span>
@@ -1677,7 +1677,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1692,7 +1692,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 <span class="n">api</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span> 
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>    
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">'POST'</span><span class="p">,</span>    
     <span class="n">max_items</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
     <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="n">COLLECTION_ID2_CLOUDS</span><span class="p">,</span> <span class="n">COLLECTION_ID1</span><span class="p">],</span>
     <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span><span class="mf">13.90</span><span class="p">,</span> <span class="mf">36.700</span><span class="p">,</span> <span class="mf">15.99</span><span class="p">,</span> <span class="mf">38.780</span><span class="p">]</span> <span class="c1"># Mount Etna (large)</span>
@@ -1705,7 +1705,7 @@ The list of filter criteria IDN and FedEO support for collection searches differ
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1764,25 +1764,25 @@ according to a <a class="reference external" href="https://github.com/stac-utils
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show assets of first search result (GeoJSON)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">item_collection_as_dict</span><span class="p">()</span>
-<span class="n">jstr</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;features&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;assets&#39;</span><span class="p">],</span> <span class="n">indent</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">md</span><span class="p">(</span><span class="s2">&quot;```json</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">jstr</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">jstr</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'features'</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">'assets'</span><span class="p">],</span> <span class="n">indent</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">md</span><span class="p">(</span><span class="s2">"```json</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">jstr</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">```</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;roles&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'roles'</span><span class="p">,</span> <span class="s1">'title'</span><span class="p">,</span> <span class="s1">'type'</span><span class="p">])</span>
     
 <span class="c1"># Display assets belonging to first item in results</span>
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="n">assets</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">assets</span>
     <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">assets</span><span class="p">:</span>     
         <span class="n">ndf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span> 
-            <span class="s1">&#39;roles&#39;</span><span class="p">:</span> <span class="n">assets</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">roles</span><span class="p">,</span> 
-            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">assets</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">media_type</span><span class="p">,</span> 
-            <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">assets</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> 
-            <span class="c1"># &#39;href&#39;: assets[key].href  </span>
+            <span class="s1">'roles'</span><span class="p">:</span> <span class="n">assets</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">roles</span><span class="p">,</span> 
+            <span class="s1">'type'</span><span class="p">:</span> <span class="n">assets</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">media_type</span><span class="p">,</span> 
+            <span class="s1">'title'</span><span class="p">:</span> <span class="n">assets</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> 
+            <span class="c1"># 'href': assets[key].href  </span>
         <span class="p">},</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">ndf</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
@@ -1808,7 +1808,7 @@ according to a <a class="reference external" href="https://github.com/stac-utils
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">URL_QUERYABLES</span> <span class="o">=</span> <span class="n">URL_LANDING_PAGE</span> <span class="o">+</span> <span class="s1">&#39;collections/queryables&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">URL_QUERYABLES</span> <span class="o">=</span> <span class="n">URL_LANDING_PAGE</span> <span class="o">+</span> <span class="s1">'collections/queryables'</span>
 </pre></div>
 </div>
 </div>
@@ -1819,10 +1819,10 @@ according to a <a class="reference external" href="https://github.com/stac-utils
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL_QUERYABLES</span><span class="p">)</span>   
 <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>    
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">,</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">][</span><span class="s1">&#39;format&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;format&#39;</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;-&#39;</span> <span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'properties'</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'key'</span><span class="p">,</span><span class="s1">'value'</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'value'</span><span class="p">][</span><span class="s1">'type'</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'format'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">'value'</span><span class="p">][</span><span class="s1">'format'</span><span class="p">]</span> <span class="k">if</span> <span class="s1">'format'</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span> <span class="k">else</span> <span class="s1">'-'</span> <span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'value'</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">'key'</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1858,7 +1858,7 @@ See the <a class="reference internal" href="#conformance-class-filter"><span cla
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">collection_search</span><span class="p">(</span>
-    <span class="nb">filter</span> <span class="o">=</span> <span class="s2">&quot;platform = &#39;Envisat&#39; and ( instrument = &#39;MERIS&#39; or instrument = &#39;MIPAS&#39; ) and organisationName = &#39;ESA/ESRIN&#39;&quot;</span>
+    <span class="nb">filter</span> <span class="o">=</span> <span class="s2">"platform = 'Envisat' and ( instrument = 'MERIS' or instrument = 'MIPAS' ) and organisationName = 'ESA/ESRIN'"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1869,8 +1869,8 @@ See the <a class="reference internal" href="#conformance-class-filter"><span cla
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">collection_list_as_dict</span><span class="p">()</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">record_path</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;collections&#39;</span><span class="p">])</span>
-<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">]]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">record_path</span><span class="o">=</span><span class="p">[</span><span class="s1">'collections'</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'title'</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -1885,10 +1885,10 @@ See the <a class="reference internal" href="#conformance-class-filter"><span cla
 <span class="n">api</span> <span class="o">=</span> <span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">URL_LANDING_PAGE</span><span class="p">)</span>  
 
 <span class="n">results</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>   
+    <span class="n">method</span> <span class="o">=</span> <span class="s1">'GET'</span><span class="p">,</span>   
     <span class="n">max_items</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
     <span class="n">collections</span> <span class="o">=</span> <span class="p">[</span><span class="n">COLLECTION_ID3_CLOUDS</span><span class="p">],</span>
-    <span class="nb">filter</span> <span class="o">=</span> <span class="s2">&quot;cloudCover &gt;= 10 and cloudCover &lt; 15&quot;</span>   
+    <span class="nb">filter</span> <span class="o">=</span> <span class="s2">"cloudCover &gt;= 10 and cloudCover &lt; 15"</span>   
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1898,7 +1898,7 @@ See the <a class="reference internal" href="#conformance-class-filter"><span cla
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found.&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2"> items found."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1909,9 +1909,9 @@ See the <a class="reference internal" href="#conformance-class-filter"><span cla
 <span class="n">stac_json</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">item_collection_as_dict</span><span class="p">()</span>
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_features</span><span class="p">(</span><span class="n">stac_json</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
-  <span class="n">_</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span><span class="s1">&#39;eo:cloud_cover&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+  <span class="n">_</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[[</span><span class="s1">'title'</span><span class="p">,</span><span class="s1">'eo:cloud_cover'</span><span class="p">]]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
 <span class="k">except</span><span class="p">:</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;eo:cloud_cover information is not available.&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">"eo:cloud_cover information is not available."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2073,7 +2073,7 @@ By CEOS WGISS DAIG
 
   <p class="copyright">
     
-      © Copyright 2024.
+      © Copyright 2026.
       <br/>
     
   </p>
